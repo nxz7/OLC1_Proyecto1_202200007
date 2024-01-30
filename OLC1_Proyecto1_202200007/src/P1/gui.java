@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -46,6 +47,10 @@ public class gui extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         entrada = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         Archivo = new javax.swing.JMenu();
         Archivo_abrir = new javax.swing.JMenuItem();
@@ -78,11 +83,11 @@ public class gui extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 409, Short.MAX_VALUE)
+            .addGap(0, 368, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("CONSOLA");
 
         jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
@@ -97,7 +102,7 @@ public class gui extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 971, Short.MAX_VALUE)
+            .addGap(0, 911, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,66 +114,107 @@ public class gui extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("ENTRADA");
 
+        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 377, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 273, Short.MAX_VALUE)
+        );
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel4.setText("GRAFICOS");
+
+        jButton3.setBackground(new java.awt.Color(255, 153, 153));
+        jButton3.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 0, 0));
+        jButton3.setText("siguiente");
+
+        jButton4.setBackground(new java.awt.Color(255, 153, 153));
+        jButton4.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(0, 0, 0));
+        jButton4.setText("anterior");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(52, 52, 52)
-                                .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(44, 44, 44)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(252, 252, 252))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2)
-                                .addContainerGap())))))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(141, 141, 141))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 7, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel3)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(59, 59, 59)
-                                .addComponent(jButton2)
-                                .addGap(30, 30, 30)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE))
+                                .addComponent(jLabel1)
+                                .addGap(26, 26, 26)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton2)
+                                    .addComponent(jButton1)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addComponent(entrada, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(247, 247, 247))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jButton3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57)
+                                .addComponent(jButton4)))))
+                .addGap(21, 21, 21))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 255));
@@ -181,6 +227,11 @@ public class gui extends javax.swing.JFrame {
         });
 
         Archivo_abrir.setText("Abrir Archivo");
+        Archivo_abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Archivo_abrirActionPerformed(evt);
+            }
+        });
         Archivo.add(Archivo_abrir);
 
         Archivo_nuevo.setText("Nuevo Archivo");
@@ -202,7 +253,9 @@ public class gui extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,18 +272,19 @@ public class gui extends javax.swing.JFrame {
     //pestañas, infor ->arreglos inf
     private ArrayList<String> ruta_ar = new ArrayList<>();
     private ArrayList<String> nombre_Par = new ArrayList<>();
-    
+
+//////////////////////////////////cerrar pestaña //////////////////////////////////////    
     private void Xboton_pestaña(String title) {
         int tabIndex = entrada.getSelectedIndex();
         int indice = nombre_Par.indexOf(title);
-
+        System.out.print("BOTON CERRAR PESTAÑA PRESIONADO");
         if (tabIndex == -1 || indice == -1) {
             return;
         }
 
         JTextArea textArea = ((JTextArea) ((JScrollPane) entrada.getComponentAt(tabIndex)).getViewport().getView());
         String text = textArea.getText();
-// guardar el nuevo arreglo si se sale---> X
+       // guardar el nuevo arreglo si se sale---> X
         int respuesta = JOptionPane.showConfirmDialog(
                 null,
                 "Guardar el archivo antes de cerrar?",
@@ -239,7 +293,8 @@ public class gui extends javax.swing.JFrame {
         );
         if (respuesta == JOptionPane.YES_OPTION) {
             String path_actual = ruta_ar.get(indice);
-//si esta vacio la ruta
+            System.out.println("DESEA GUARDAR");
+        //si esta vacio la ruta
             if (path_actual.isEmpty()) {
                 JFileChooser fileChooser = new JFileChooser();
                 FileNameExtensionFilter exp = new FileNameExtensionFilter("dataforge (*.df)", "df");
@@ -263,7 +318,8 @@ public class gui extends javax.swing.JFrame {
         ruta_ar.remove(indice);
         nombre_Par.remove(indice);
     }
-
+//-----------------------------------------------------------------------------------------------    
+////////////////////////////////////////////guardar /////////////////////////////
     private void guardar_archivo(File file, String text) {
         try {
             FileWriter nuevo_infArc = new FileWriter(file, false);
@@ -273,13 +329,15 @@ public class gui extends javax.swing.JFrame {
             e.printStackTrace(); //exceocion - >>> que no se caiga
         }
     }
-    
+//-----------------------------------------------------------------------------------------------   
     
     private void Archivo_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Archivo_nuevoActionPerformed
+        
         JTextArea textArea = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(textArea);
 //llevar la cuenta y poner nombre --->pestañitas
         pesta_cuenta++;
+        System.out.println("NUEVO ARCHIVO DF");
         String title = "pestaña " + pesta_cuenta;
 
         JPanel tabPanel = new JPanel(new BorderLayout());
@@ -290,15 +348,70 @@ public class gui extends javax.swing.JFrame {
 
         tabPanel.add(titleLabel, BorderLayout.CENTER);
         tabPanel.add(closeButton, BorderLayout.EAST);
-
         entrada.addTab(title, scrollPane);
         entrada.setTabComponentAt(entrada.getTabCount() - 1, tabPanel);
         entrada.setSelectedIndex(entrada.getTabCount() - 1);
-
+        System.out.println("PESTAÑA CREADA");
         ruta_ar.add("");
         nombre_Par.add(title);         // los valores > ruta y el nombre que se le va a dar 
     }//GEN-LAST:event_Archivo_nuevoActionPerformed
 
+    private void Archivo_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Archivo_abrirActionPerformed
+        //elegir eñ archivo --> .df
+        JFileChooser elegirArchivo = new JFileChooser();
+        System.out.print("ABRIR UN ARCHIVO QUE EXISTE ------> SELECCIONAR ");
+        FileNameExtensionFilter exp = new FileNameExtensionFilter("dataforge (*.df)", "df");
+        elegirArchivo.addChoosableFileFilter(exp);
+        elegirArchivo.setFileFilter(exp);
+        if (elegirArchivo.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+
+        File archivo_seleccionado = elegirArchivo.getSelectedFile();
+        String codigo = leer_Abierto(archivo_seleccionado);
+
+        String nombrePesta =  nombre_archi_pesta(archivo_seleccionado); //funcion agarrar el nombre
+        JTextArea textArea = new JTextArea(codigo);         // pegar el texto del archivo
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        pesta_cuenta++;
+        JPanel tabPanel = new JPanel(new BorderLayout());
+        String nombrePestaOc = nombrePesta;
+        JLabel titleLabel = new JLabel(nombrePestaOc);
+        JButton closeButton = new JButton("x");
+        closeButton.addActionListener(e -> Xboton_pestaña(nombrePestaOc)); // funcion cerra pestaña
+        System.out.println("AGREGAR LA PESTAÑA");
+        tabPanel.add(titleLabel, BorderLayout.CENTER);
+        tabPanel.add(closeButton, BorderLayout.EAST);
+        entrada.addTab(nombrePestaOc, scrollPane);
+        entrada.setTabComponentAt(entrada.getTabCount() - 1, tabPanel);
+        entrada.setSelectedIndex(entrada.getTabCount() - 1);
+        // añadir el path y el nombre a los arreglos ---> control de pestañas
+        ruta_ar.add(archivo_seleccionado.getAbsolutePath());
+        nombre_Par.add(nombrePestaOc);
+    }//GEN-LAST:event_Archivo_abrirActionPerformed
+///////////////////////////// abrirb arhivo - funcion //////////////
+    private String leer_Abierto(File file) {
+        StringBuilder codigo = new StringBuilder();
+        System.out.println("LEYENDO EL ARCHIVO");
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                codigo.append(scanner.nextLine()).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }
+        return codigo.toString();
+    }
+    
+    private String nombre_archi_pesta(File file) {
+        String nombrePesta = file.getName();
+        int puntoIndex = nombrePesta.lastIndexOf('.');
+        if (puntoIndex > 0) {
+            nombrePesta = nombrePesta.substring(0, puntoIndex);
+        }
+        return nombrePesta;
+    }
+///////////////////////////////////////////////////////////////////
     /**
      * @param args the command line arguments
      */
@@ -342,13 +455,17 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JTabbedPane entrada;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
