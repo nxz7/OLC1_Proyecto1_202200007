@@ -1,6 +1,7 @@
 
 package P1;
 
+import funciones.TokenList;
 import java.io.StringReader;
 
 /**
@@ -14,14 +15,14 @@ public class Inicio {
         inicioM.setVisible(true);
         //funciones.funcion.mostrar("hola");
         
-        //analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
+        //nalizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
         
         String entrada = """
-                         MOSTRAR ( 2*7 + 3);
+                         console::print="hola",27,"adios" end;
                          """;
         //MOSTRAR
-        
-        analizar(entrada); System.out.println(analizadores.Parser.resultado);        
+        analizar(entrada);
+        TokenList.printTokenList();        
     }
     
     public static void analizadores(String ruta, String jflexFile, String cupFile){

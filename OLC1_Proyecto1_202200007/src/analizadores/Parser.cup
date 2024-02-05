@@ -2,6 +2,8 @@
 package analizadores;
 
 import java_cup.runtime.*;
+import java.util.LinkedList;
+import funciones.token;
 
 
 //------> Codigo para el parser
@@ -9,50 +11,44 @@ import java_cup.runtime.*;
 
 parser code 
 {:
-    public static String resultado = ""; 
+    
 
     public void syntax_error(Symbol s)
     {
-            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
+        System.err.println("Error Sintactico: " + s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado");
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
     {
-            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
+        System.err.println("Error Sintactico: " + s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion.");
     }
-
 :}
-
 
 //------> Codigo para las acciones gramaticales (no tocar)
 action code
 {:  :}
 
-
 //------> Declaración de terminales
-terminal String PARENTESIS_A, PARENTESIS_C, PUNTOYCOMA;
-terminal String POR, MAS;
-terminal String R_MOSTRAR;
-terminal String ENTERO;
-
+terminal String IGUAL, PUNTOYCOMA, DOSPUNTOS, COMA;
+terminal String FIN;
+terminal String CONSOLE;
+terminal String CADENA_F;
+terminal String NUMERO;
+terminal String PRINT;
 
 //------> Declaración de no terminales
 non terminal inicio;
-non terminal instruccion, mostrar;
 non terminal lista_instr;
-non terminal expresion;
+non terminal instruccion;
+non terminal mostrar;
 
 //------> PRECEDENCIA
-precedence left MAS;
-precedence left POR;
 
 
 //------> Definir Simbolo Inicial
-start with inicio; 
-
+start with inicio;
 
 // ------------>  Producciones  <------------
-
 inicio ::= lista_instr
 ;
 
@@ -63,10 +59,5 @@ lista_instr ::= lista_instr instruccion
 instruccion ::= mostrar
 ;
 
-mostrar ::= R_MOSTRAR PARENTESIS_A expresion:val PARENTESIS_C PUNTOYCOMA   {: analizadores.Parser.resultado = analizadores.Parser.resultado + funciones.funcion.mostrar(val.toString()); :}
-;
-
-expresion ::= expresion:a MAS expresion:b       {: RESULT = "SUM("+a.toString()+ ","+b.toString()+")" ; :}
-    | expresion:a POR expresion:b               {: RESULT = "MUL("+a.toString()+ ","+b.toString()+")" ; :}
-    | ENTERO:val                                {: RESULT = val; :}
+mostrar ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL CADENA_F COMA NUMERO CADENA_F FIN PUNTOYCOMA {: System.out.println("hola"); :}
 ;

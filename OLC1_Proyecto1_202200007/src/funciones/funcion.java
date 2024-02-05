@@ -6,8 +6,12 @@ import javax.swing.JOptionPane;
  *
  * @author natalia
  */
+
+import java.util.List;
+
 public class funcion {
-    public static String mostrar(String expresion){
-        return "System.out.println("+expresion+");";
-    }    
+    
+
+    
 }
+
