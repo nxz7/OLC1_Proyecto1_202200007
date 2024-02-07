@@ -1,6 +1,7 @@
 
 package P1;
 
+import funciones.ErroresList;
 import funciones.TokenList;
 import java.io.StringReader;
 
@@ -13,16 +14,22 @@ public class Inicio {
     public static void main(String[] args) {
         gui inicioM = new gui();
         inicioM.setVisible(true);
-        //funciones.funcion.mostrar("hola");
+        //funciones.funcion.mostrar("hola");s
         
-        //nalizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
+        //analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
         
-        String entrada = """
-                         console::print="hola",27,"adios" end;
+        String entrada = """ 
+                         console::print="hola",27,"adios" end;+
+                         CONSOLE:: PRINT ) CONSOLE
                          """;
         //MOSTRAR
+        
+        System.out.print("in--");
+        
         analizar(entrada);
-        TokenList.printTokenList();        
+        TokenList.printTokenList();
+        TokenList.genHTMLTokenList();
+        ErroresList.genHTMLErrorList();
     }
     
     public static void analizadores(String ruta, String jflexFile, String cupFile){
@@ -41,9 +48,13 @@ public class Inicio {
     
     public static void analizar (String entrada){
         try {
-            analizadores.Lexer lexer = new analizadores.Lexer(new StringReader(entrada)); 
+            analizadores.Lexer lexer = new analizadores.Lexer(new StringReader(entrada));
+            TokenList.printTokenList();    
             analizadores.Parser parser = new analizadores.Parser(lexer);
             parser.parse();
+            System.out.println("DENTRO DE ANALIZAR:");
+            TokenList.printTokenList();
+            System.out.println("-----------------------------------");
         } catch (Exception e) {
             System.out.println("Error fatal en compilación de entrada.");
             System.out.println(e);

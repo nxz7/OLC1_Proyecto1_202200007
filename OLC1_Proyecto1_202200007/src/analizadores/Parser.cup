@@ -11,17 +11,18 @@ import funciones.token;
 
 parser code 
 {:
-    
+    public String resultado = ""; 
 
     public void syntax_error(Symbol s)
     {
-        System.err.println("Error Sintactico: " + s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado");
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
     {
-        System.err.println("Error Sintactico: " + s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion.");
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
     }
+
 :}
 
 //------> Codigo para las acciones gramaticales (no tocar)
@@ -35,6 +36,8 @@ terminal String CONSOLE;
 terminal String CADENA_F;
 terminal String NUMERO;
 terminal String PRINT;
+terminal String VAR, DOUBLE, GUION, PROGRAMPAL, ABRIRCORCHETES, CERRARCORCHETES, CADENACHAR, ARREGLO, ARROBA, ABRIRPARENTESIS, CERRARPARENTESIS, SUMA, RESTA, MULTIPLICACION, DIVISION, MODULO, MEDIA, MEDIANA, MODA, VARIANZA, MAX, MIN, COLUMN, EXEC, VALUES, TITULO, LABEL, GRAPHBAR, GRAPHPIE, GRAPHLINE, HISTOGRAM, EJEX, EJEY, TITULOX, TITULOY;
+
 
 //------> Declaración de no terminales
 non terminal inicio;
@@ -59,5 +62,5 @@ lista_instr ::= lista_instr instruccion
 instruccion ::= mostrar
 ;
 
-mostrar ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL CADENA_F COMA NUMERO CADENA_F FIN PUNTOYCOMA {: System.out.println("hola"); :}
+mostrar ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL CADENA_F COMA NUMERO COMA CADENA_F FIN PUNTOYCOMA {: System.out.println("nomas preuba"); :}
 ;

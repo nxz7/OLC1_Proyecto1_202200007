@@ -4,34 +4,36 @@
  */
 package funciones;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 /**
  *
  * @author natalia
  */
-public class TokenList {
-    static class TokenNode {
-        token token;
-        TokenNode next;
 
-        public TokenNode(token token) {
-            this.token = token;
+import java.io.IOException;
+
+import java.io.FileWriter;
+
+public class ErroresList {
+    static class ErrorNode {
+        error error;
+        ErrorNode next;
+
+        public ErrorNode(error error) {
+            this.error = error;
             this.next = null;
         }
     }
 
-    private static TokenNode head;
+    private static ErrorNode head;
 
-    public static void addTokenToList(int linea, int columna, String lexema, String tipo) {
-        token newToken = new token(linea, columna, lexema, tipo);
-        TokenNode newNode = new TokenNode(newToken);
+    public static void addErrorToList(int linea, int columna, String descripcion, String tipo) {
+        error newError = new error(linea, columna, descripcion, tipo);
+        ErrorNode newNode = new ErrorNode(newError);
 
         if (head == null) {
             head = newNode;
         } else {
-            TokenNode temp = head;
+            ErrorNode temp = head;
             while (temp.next != null) {
                 temp = temp.next;
             }
@@ -39,23 +41,23 @@ public class TokenList {
         }
     }
 
-    public static void printTokenList() {
-        TokenNode temp = head;
+    public static void printErrorList() {
+        ErrorNode temp = head;
         while (temp != null) {
-            token token = temp.token;
-            System.out.println("Linea: " + token.linea +
-                    ", Columna: " + token.columna +
-                    ", Lexema: '" + token.lexema + '\'' +
-                    ", Tipo: '" + token.tipo + '\'');
+            error error = temp.error;
+            System.out.println("Linea: " + error.linea +
+                    ", Columna: " + error.columna +
+                    ", Descripcion: '" + error.descripcion + '\'' +
+                    ", Tipo: '" + error.tipo + '\'');
             temp = temp.next;
         }
     }
     
-    public static void genHTMLTokenList() {
-        String filePath = "TablaTokens.html"; 
+    public static void genHTMLErrorList() {
+        String filePath = "TablaErrores.html"; 
         try {
             FileWriter writer = new FileWriter(filePath);
-            writer.write("<html>\n<head>\n<title>Token List</title>\n");
+            writer.write("<html>\n<head>\n<title>Error List</title>\n");
             writer.write("<style>\n");
             writer.write("table {\n");
             writer.write("    border-collapse: collapse;\n");
@@ -70,7 +72,7 @@ public class TokenList {
             writer.write("    background-color: #f2f2f2;\n");
             writer.write("}\n");
             writer.write("th {\n");
-            writer.write("    background-color: #6A5ACD; /* Baby purple */\n");
+            writer.write("    background-color: #FFB6C1; /* Baby pink */\n");
             writer.write("    color: white;\n");
             writer.write("}\n");
             writer.write("tr:hover {\n");
@@ -78,23 +80,23 @@ public class TokenList {
             writer.write("}\n");
             writer.write("</style>\n");
             writer.write("</head>\n<body>\n<table>\n");
-            writer.write("<tr><th>#</th><th>Linea</th><th>Columna</th><th>Lexema</th><th>Tipo</th></tr>\n");
+            writer.write("<tr><th>#</th><th>Linea</th><th>Columna</th><th>Descripcion</th><th>Tipo</th></tr>\n");
 
             int rowNumber = 1; 
-            TokenNode temp = head;
+            ErrorNode temp = head;
             while (temp != null) {
-                token token = temp.token;
-                writer.write("<tr><td>" + rowNumber + "</td><td>" + token.linea + "</td><td>" +
-                        token.columna + "</td><td>" + token.lexema + "</td><td>" + token.tipo + "</td></tr>\n");
+                error error = temp.error;
+                writer.write("<tr><td>" + rowNumber + "</td><td>" + error.linea + "</td><td>" +
+                        error.columna + "</td><td>" + "se obtuvo:"+ error.descripcion + "</td><td>" + error.tipo + "</td></tr>\n");
                 temp = temp.next;
                 rowNumber++;
             }
 
             writer.write("</table>\n</body>\n</html>");
             writer.close();
-            System.out.println("HTML de tabla de tokens generada bajo el nombre: " + filePath);
+            System.out.println("HTML de tabla de errores generada bajo el nombre: " + filePath);
         } catch (IOException e) {
-            System.out.println("ERROR EN CREAR LA TABLA DE TOKENS -> " + e.getMessage());
+            System.out.println("ERROR EN CREAR LA TABLA DE ERRORES -> " + e.getMessage());
         }
     }
 }

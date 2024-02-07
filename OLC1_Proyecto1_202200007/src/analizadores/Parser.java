@@ -34,7 +34,7 @@ public class Parser extends java_cup.runtime.lr_parser {
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
     "\000\006\000\002\002\004\000\002\002\003\000\002\003" +
-    "\004\000\002\003\003\000\002\004\003\000\002\005\015" +
+    "\004\000\002\003\003\000\002\004\003\000\002\005\016" +
     "" });
 
   /** Access to production table. */
@@ -43,16 +43,16 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\022\000\004\011\005\001\002\000\006\002\ufffe\011" +
+    "\000\023\000\004\011\005\001\002\000\006\002\ufffe\011" +
     "\ufffe\001\002\000\004\006\013\001\002\000\006\002\000" +
     "\011\005\001\002\000\004\002\011\001\002\000\006\002" +
     "\ufffd\011\ufffd\001\002\000\004\002\001\001\002\000\006" +
     "\002\uffff\011\uffff\001\002\000\004\006\014\001\002\000" +
     "\004\014\015\001\002\000\004\004\016\001\002\000\004" +
     "\012\017\001\002\000\004\007\020\001\002\000\004\013" +
-    "\021\001\002\000\004\012\022\001\002\000\004\010\023" +
-    "\001\002\000\004\005\024\001\002\000\006\002\ufffc\011" +
-    "\ufffc\001\002" });
+    "\021\001\002\000\004\007\022\001\002\000\004\012\023" +
+    "\001\002\000\004\010\024\001\002\000\004\005\025\001" +
+    "\002\000\006\002\ufffc\011\ufffc\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -60,13 +60,13 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\022\000\012\002\006\003\005\004\003\005\007\001" +
+    "\000\023\000\012\002\006\003\005\004\003\005\007\001" +
     "\001\000\002\001\001\000\002\001\001\000\006\004\011" +
     "\005\007\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001" });
+    "\000\002\001\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -105,17 +105,18 @@ public class Parser extends java_cup.runtime.lr_parser {
 
 
 
-    
+    public String resultado = ""; 
 
     public void syntax_error(Symbol s)
     {
-        System.err.println("Error Sintactico: " + s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado");
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
     {
-        System.err.println("Error Sintactico: " + s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion.");
+            System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
     }
+
 
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -195,11 +196,11 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // mostrar ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL CADENA_F COMA NUMERO CADENA_F FIN PUNTOYCOMA 
+          case 5: // mostrar ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL CADENA_F COMA NUMERO COMA CADENA_F FIN PUNTOYCOMA 
             {
               Object RESULT =null;
-		 System.out.println("hola"); 
-              CUP$Parser$result = parser.getSymbolFactory().newSymbol("mostrar",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-10)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+		 System.out.println("nomas preuba"); 
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("mostrar",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-11)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
