@@ -60,6 +60,8 @@ lista_instr ::= lista_instr instruccion
 ;
 
 instruccion ::= mostrar
+    | error PUNTOYCOMA
+    | error FIN PUNTOYCOMA
 ;
 
 mostrar ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL CADENA_F COMA NUMERO COMA CADENA_F FIN PUNTOYCOMA {: System.out.println("nomas preuba"); :}

@@ -29,6 +29,9 @@ cadena_f=[\"][^\"\n]+[\"]
 comentario_multi = [\<][\!][^\!\>]+[\!][\>]
 comentario_una = [\!][^\n]+
 
+//ARREGLAR EL COMENTARIO, QUE SE AGREGA A ERROR 
+
+
 %%
 // ------------  Reglas Lexicas -------------------
 ";" {funciones.TokenList.addTokenToList(yyline ,yycolumn,yytext(), "PUNTOYCOMA"); return new Symbol(sym.PUNTOYCOMA, yycolumn, yyline, yytext()); }

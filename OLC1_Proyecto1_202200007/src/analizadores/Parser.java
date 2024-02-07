@@ -33,9 +33,9 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\006\000\002\002\004\000\002\002\003\000\002\003" +
-    "\004\000\002\003\003\000\002\004\003\000\002\005\016" +
-    "" });
+    "\000\010\000\002\002\004\000\002\002\003\000\002\003" +
+    "\004\000\002\003\003\000\002\004\003\000\002\004\004" +
+    "\000\002\004\005\000\002\005\016" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -43,16 +43,20 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\023\000\004\011\005\001\002\000\006\002\ufffe\011" +
-    "\ufffe\001\002\000\004\006\013\001\002\000\006\002\000" +
-    "\011\005\001\002\000\004\002\011\001\002\000\006\002" +
-    "\ufffd\011\ufffd\001\002\000\004\002\001\001\002\000\006" +
-    "\002\uffff\011\uffff\001\002\000\004\006\014\001\002\000" +
-    "\004\014\015\001\002\000\004\004\016\001\002\000\004" +
-    "\012\017\001\002\000\004\007\020\001\002\000\004\013" +
-    "\021\001\002\000\004\007\022\001\002\000\004\012\023" +
-    "\001\002\000\004\010\024\001\002\000\004\005\025\001" +
-    "\002\000\006\002\ufffc\011\ufffc\001\002" });
+    "\000\027\000\006\003\004\011\006\001\002\000\006\005" +
+    "\027\010\030\001\002\000\010\002\ufffe\003\ufffe\011\ufffe" +
+    "\001\002\000\004\006\014\001\002\000\010\002\000\003" +
+    "\004\011\006\001\002\000\004\002\012\001\002\000\010" +
+    "\002\ufffd\003\ufffd\011\ufffd\001\002\000\004\002\001\001" +
+    "\002\000\010\002\uffff\003\uffff\011\uffff\001\002\000\004" +
+    "\006\015\001\002\000\004\014\016\001\002\000\004\004" +
+    "\017\001\002\000\004\012\020\001\002\000\004\007\021" +
+    "\001\002\000\004\013\022\001\002\000\004\007\023\001" +
+    "\002\000\004\012\024\001\002\000\004\010\025\001\002" +
+    "\000\004\005\026\001\002\000\010\002\ufffa\003\ufffa\011" +
+    "\ufffa\001\002\000\010\002\ufffc\003\ufffc\011\ufffc\001\002" +
+    "\000\004\005\031\001\002\000\010\002\ufffb\003\ufffb\011" +
+    "\ufffb\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -60,13 +64,15 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\023\000\012\002\006\003\005\004\003\005\007\001" +
-    "\001\000\002\001\001\000\002\001\001\000\006\004\011" +
-    "\005\007\001\001\000\002\001\001\000\002\001\001\000" +
+    "\000\027\000\012\002\007\003\006\004\004\005\010\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\006\004\012\005\010\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001" });
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -196,7 +202,25 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // mostrar ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL CADENA_F COMA NUMERO COMA CADENA_F FIN PUNTOYCOMA 
+          case 5: // instruccion ::= error PUNTOYCOMA 
+            {
+              Object RESULT =null;
+
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruccion",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 6: // instruccion ::= error FIN PUNTOYCOMA 
+            {
+              Object RESULT =null;
+
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("instruccion",2, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // mostrar ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL CADENA_F COMA NUMERO COMA CADENA_F FIN PUNTOYCOMA 
             {
               Object RESULT =null;
 		 System.out.println("nomas preuba"); 

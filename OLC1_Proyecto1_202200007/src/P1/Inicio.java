@@ -20,7 +20,12 @@ public class Inicio {
         
         String entrada = """ 
                          console::print="hola",27,"adios" end;+
-                         CONSOLE:: PRINT ) CONSOLE
+                         CONSOLE:: PRINT ) CONSOLE ?
+                         div(6,6); / ??
+                         <!COMENTARIO 
+                         DE DOS!>
+                         console::print="SEGUNDO",2,"NUMDOS" end;+
+                         !COMENTARIO
                          """;
         //MOSTRAR
         
