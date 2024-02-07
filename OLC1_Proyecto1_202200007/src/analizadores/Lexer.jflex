@@ -28,6 +28,7 @@ numero = ([0-9]+\.[0-9]+)|([0-9]+)
 cadena_f=[\"][^\"\n]+[\"]
 comentario_multi = [\<][\!][^\!\>]+[\!][\>]
 comentario_una = [\!][^\n]+
+//letra = [^\s]
 
 //ARREGLAR EL COMENTARIO, QUE SE AGREGA A ERROR 
 
@@ -87,8 +88,9 @@ comentario_una = [\!][^\n]+
 
 
 
-comentario_multi {}
-comentario_una {}
+
+{comentario_multi} {}
+{comentario_una} {}
 
 //------> Ingorados 
 [ \t\r\n\f]     {/* Espacios en blanco se ignoran */}

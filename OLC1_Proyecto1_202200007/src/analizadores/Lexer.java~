@@ -68,18 +68,18 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\1\1\1\2\1\3\2\1\22\0\1\1\1\0"+
-    "\1\4\5\0\1\5\1\6\2\0\1\7\1\10\1\11"+
-    "\1\0\12\12\1\13\1\14\1\0\1\15\2\0\1\16"+
-    "\1\17\1\20\1\21\1\22\1\23\1\0\1\24\1\25"+
-    "\1\26\1\27\1\0\1\30\1\31\1\32\1\33\1\34"+
-    "\1\0\1\35\1\36\1\37\1\40\1\41\1\0\1\42"+
-    "\1\43\1\44\1\45\1\0\1\46\1\0\1\47\1\0"+
-    "\1\17\1\20\1\21\1\22\1\23\1\0\1\24\1\25"+
-    "\1\26\1\27\1\0\1\30\1\31\1\32\1\33\1\34"+
-    "\1\0\1\35\1\36\1\37\1\40\1\41\1\0\1\42"+
-    "\1\43\1\44\12\0\1\3\252\0\2\26\115\0\1\36"+
-    "\u01a8\0\2\3\326\0\u0100\3";
+    "\11\0\1\1\1\2\1\3\2\1\22\0\1\1\1\4"+
+    "\1\5\5\0\1\6\1\7\2\0\1\10\1\11\1\12"+
+    "\1\0\12\13\1\14\1\15\1\16\1\17\1\20\1\0"+
+    "\1\21\1\22\1\23\1\24\1\25\1\26\1\0\1\27"+
+    "\1\30\1\31\1\32\1\0\1\33\1\34\1\35\1\36"+
+    "\1\37\1\0\1\40\1\41\1\42\1\43\1\44\1\0"+
+    "\1\45\1\46\1\47\1\50\1\0\1\51\3\0\1\22"+
+    "\1\23\1\24\1\25\1\26\1\0\1\27\1\30\1\31"+
+    "\1\32\1\0\1\33\1\34\1\35\1\36\1\37\1\0"+
+    "\1\40\1\41\1\42\1\43\1\44\1\0\1\45\1\46"+
+    "\1\47\12\0\1\3\252\0\2\31\115\0\1\41\u01a8\0"+
+    "\2\3\326\0\u0100\3";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[1280];
@@ -106,18 +106,19 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\1\1\3\1\4\1\5\1\6"+
-    "\1\7\1\10\1\11\1\12\1\13\15\1\1\14\1\15"+
-    "\27\0\1\16\1\7\1\17\4\0\1\20\2\0\1\21"+
-    "\4\0\1\22\1\0\1\23\1\24\1\25\2\0\1\26"+
-    "\1\27\2\0\1\30\1\31\4\0\1\32\1\33\1\34"+
-    "\4\0\1\35\13\0\1\36\1\37\1\40\4\0\1\41"+
-    "\2\0\1\42\6\0\1\43\1\44\2\0\1\45\4\0"+
-    "\1\46\1\47\1\50\1\51\2\0\1\52\1\0\1\53"+
-    "\1\0\1\54\1\0\1\55\1\56\7\0\1\57\1\0";
+    "\1\0\1\1\1\2\2\1\1\3\1\4\1\5\1\6"+
+    "\1\7\1\10\1\11\1\1\1\12\1\13\15\1\1\14"+
+    "\1\15\1\16\30\0\1\17\1\7\1\0\1\20\3\0"+
+    "\1\21\2\0\1\22\4\0\1\23\1\0\1\24\1\25"+
+    "\1\26\2\0\1\27\1\30\2\0\1\31\1\0\1\32"+
+    "\3\0\1\33\1\34\1\35\4\0\1\36\5\0\1\16"+
+    "\5\0\1\37\1\40\1\41\4\0\1\42\1\0\1\43"+
+    "\6\0\1\44\1\45\1\0\1\46\4\0\1\47\1\50"+
+    "\1\51\1\52\1\0\1\53\1\0\1\54\1\0\1\55"+
+    "\1\56\1\57";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[151];
+    int [] result = new int[142];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -142,28 +143,27 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\50\0\50\0\120\0\50\0\50\0\50\0\50"+
-    "\0\170\0\50\0\50\0\50\0\50\0\240\0\310\0\360"+
-    "\0\u0118\0\u0140\0\u0168\0\u0190\0\u01b8\0\u01e0\0\u0208\0\u0230"+
-    "\0\u0258\0\u0280\0\50\0\50\0\u02a8\0\u02d0\0\u02f8\0\u0320"+
-    "\0\u0348\0\u0370\0\u0398\0\u03c0\0\u03e8\0\u0410\0\u0438\0\u0460"+
-    "\0\u0488\0\u04b0\0\u04d8\0\u0500\0\u0528\0\u0550\0\u0578\0\u05a0"+
-    "\0\u05c8\0\u05f0\0\u0618\0\50\0\u02d0\0\50\0\u0640\0\u0668"+
-    "\0\u0690\0\u06b8\0\50\0\u06e0\0\u0708\0\50\0\u0730\0\u0758"+
-    "\0\u0780\0\u07a8\0\50\0\u07d0\0\50\0\u07f8\0\50\0\u0820"+
-    "\0\u0848\0\50\0\50\0\u0870\0\u0898\0\u08c0\0\50\0\u08e8"+
-    "\0\u0910\0\u0938\0\u0960\0\50\0\50\0\50\0\u0988\0\u09b0"+
-    "\0\u09d8\0\u0a00\0\50\0\u0a28\0\u0a50\0\u0a78\0\u0aa0\0\u0ac8"+
-    "\0\u0af0\0\u0b18\0\u0b40\0\u0b68\0\u0b90\0\u0bb8\0\50\0\u0be0"+
-    "\0\50\0\u0c08\0\u0c30\0\u0c58\0\u0c80\0\50\0\u0ca8\0\u0cd0"+
-    "\0\50\0\u0cf8\0\u0d20\0\u0d48\0\u0d70\0\u0d98\0\u0dc0\0\u0de8"+
-    "\0\50\0\u0e10\0\u0e38\0\50\0\u0e60\0\u0e88\0\u0eb0\0\u0ed8"+
-    "\0\50\0\50\0\50\0\50\0\u0f00\0\u0f28\0\50\0\u0f50"+
-    "\0\50\0\u0f78\0\50\0\u0fa0\0\50\0\50\0\u0fc8\0\u0ff0"+
-    "\0\u1018\0\u1040\0\u1068\0\u1090\0\u10b8\0\50\0\u10e0";
+    "\0\0\0\52\0\52\0\124\0\176\0\52\0\52\0\52"+
+    "\0\52\0\250\0\52\0\52\0\322\0\52\0\52\0\374"+
+    "\0\u0126\0\u0150\0\u017a\0\u01a4\0\u01ce\0\u01f8\0\u0222\0\u024c"+
+    "\0\u0276\0\u02a0\0\u02ca\0\u02f4\0\52\0\52\0\124\0\u031e"+
+    "\0\u0348\0\u0372\0\u039c\0\u03c6\0\u03f0\0\u041a\0\u0444\0\u046e"+
+    "\0\u0498\0\u04c2\0\u04ec\0\u0516\0\u0540\0\u056a\0\u0594\0\u05be"+
+    "\0\u05e8\0\u0612\0\u063c\0\u0666\0\u0690\0\u06ba\0\u06e4\0\52"+
+    "\0\u0348\0\u070e\0\52\0\u0738\0\u0762\0\u078c\0\52\0\u07b6"+
+    "\0\u07e0\0\52\0\u080a\0\u0834\0\u085e\0\u0888\0\52\0\u08b2"+
+    "\0\52\0\u08dc\0\52\0\u0906\0\u0930\0\52\0\52\0\u095a"+
+    "\0\u0984\0\u09ae\0\u09d8\0\52\0\u0a02\0\u0a2c\0\u0a56\0\52"+
+    "\0\52\0\52\0\u0a80\0\u0aaa\0\u0ad4\0\u0afe\0\52\0\u0b28"+
+    "\0\u0b52\0\u0b7c\0\u0ba6\0\u0bd0\0\52\0\u0bfa\0\u0c24\0\u0c4e"+
+    "\0\u0c78\0\u0ca2\0\52\0\u0ccc\0\52\0\u0cf6\0\u0d20\0\u0d4a"+
+    "\0\u0d74\0\52\0\u0d9e\0\52\0\u0dc8\0\u0df2\0\u0e1c\0\u0e46"+
+    "\0\u0e70\0\u0e9a\0\u0ec4\0\52\0\u0eee\0\52\0\u0f18\0\u0f42"+
+    "\0\u0f6c\0\u0f96\0\52\0\52\0\52\0\52\0\u0fc0\0\52"+
+    "\0\u0fea\0\52\0\u1014\0\52\0\52\0\52";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[151];
+    int [] result = new int[142];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -187,45 +187,43 @@ public class Lexer implements java_cup.runtime.Scanner {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\2\2\3\1\0\1\4\1\5\1\6\1\7\1\10"+
-    "\1\2\1\11\1\12\1\13\1\14\1\15\1\16\1\2"+
-    "\1\17\1\20\1\21\1\22\1\23\2\2\1\24\1\25"+
-    "\2\2\1\26\1\27\1\30\1\31\1\2\1\32\3\2"+
-    "\1\33\1\34\1\2\50\0\2\35\1\0\1\35\1\0"+
-    "\43\35\11\0\1\36\1\11\72\0\1\37\37\0\1\40"+
-    "\5\0\1\41\42\0\1\42\4\0\1\43\43\0\1\44"+
-    "\2\0\1\45\7\0\1\46\42\0\1\47\40\0\1\50"+
-    "\40\0\1\51\47\0\1\52\3\0\1\53\2\0\1\54"+
-    "\4\0\1\55\4\0\1\56\44\0\1\57\35\0\1\60"+
-    "\64\0\1\61\35\0\1\62\40\0\1\63\30\0\2\35"+
-    "\1\0\1\35\1\64\43\35\12\0\1\65\72\0\1\66"+
-    "\31\0\1\67\60\0\1\70\1\71\1\72\56\0\1\73"+
-    "\46\0\1\74\32\0\1\75\46\0\1\76\50\0\1\77"+
-    "\43\0\1\100\66\0\1\101\31\0\1\102\71\0\1\103"+
-    "\27\0\1\104\57\0\1\105\37\0\1\106\55\0\1\107"+
-    "\45\0\1\110\4\0\1\111\52\0\1\112\42\0\1\113"+
-    "\55\0\1\114\40\0\1\115\4\0\1\116\47\0\1\117"+
-    "\52\0\1\120\32\0\1\121\62\0\1\122\31\0\1\123"+
-    "\71\0\1\124\1\125\25\0\1\126\62\0\1\127\52\0"+
-    "\1\130\33\0\1\131\52\0\1\132\40\0\1\133\62\0"+
-    "\1\134\41\0\1\135\63\0\1\136\47\0\1\137\35\0"+
-    "\1\140\52\0\1\141\50\0\1\142\50\0\1\143\44\0"+
-    "\1\144\44\0\1\145\55\0\1\146\44\0\1\147\36\0"+
-    "\1\150\67\0\1\151\45\0\1\152\42\0\1\153\42\0"+
-    "\1\154\43\0\1\155\62\0\1\156\54\0\1\157\40\0"+
-    "\1\160\42\0\1\161\44\0\1\162\7\0\1\163\3\0"+
-    "\1\164\37\0\1\165\55\0\1\166\34\0\1\167\63\0"+
-    "\1\170\52\0\1\171\43\0\1\172\34\0\1\173\53\0"+
-    "\1\174\43\0\1\175\56\0\1\176\47\0\1\177\56\0"+
-    "\1\200\31\0\1\201\61\0\1\202\60\0\1\203\1\204"+
-    "\50\0\1\205\40\0\1\206\47\0\1\207\44\0\1\210"+
-    "\40\0\1\211\43\0\1\212\47\0\1\213\56\0\1\214"+
-    "\44\0\1\215\55\0\1\216\51\0\1\217\63\0\1\220"+
-    "\31\0\1\221\6\0\1\222\47\0\1\223\41\0\1\224"+
-    "\45\0\1\225\36\0\1\226\67\0\1\227\36\0\1\226"+
-    "\21\0";
+    "\1\11\1\2\1\12\1\13\1\14\1\15\1\16\1\2"+
+    "\1\17\1\20\1\2\1\21\1\22\1\23\1\24\1\25"+
+    "\2\2\1\26\1\27\2\2\1\30\1\31\1\32\1\33"+
+    "\1\2\1\34\3\2\1\35\1\36\52\0\2\37\1\0"+
+    "\47\37\2\40\1\0\2\40\1\0\44\40\12\0\1\41"+
+    "\1\12\42\0\1\42\105\0\1\43\41\0\1\44\5\0"+
+    "\1\45\44\0\1\46\4\0\1\47\45\0\1\50\2\0"+
+    "\1\51\7\0\1\52\44\0\1\53\42\0\1\54\42\0"+
+    "\1\55\51\0\1\56\3\0\1\57\2\0\1\60\4\0"+
+    "\1\61\4\0\1\62\46\0\1\63\37\0\1\64\66\0"+
+    "\1\65\37\0\1\66\42\0\1\67\27\0\2\40\1\0"+
+    "\2\40\1\70\44\40\13\0\1\71\36\0\4\72\1\0"+
+    "\13\72\1\0\31\72\40\0\1\73\33\0\1\74\62\0"+
+    "\1\75\1\0\1\76\60\0\1\77\50\0\1\100\34\0"+
+    "\1\101\50\0\1\102\52\0\1\103\45\0\1\104\70\0"+
+    "\1\105\33\0\1\106\73\0\1\107\31\0\1\110\61\0"+
+    "\1\111\41\0\1\112\57\0\1\113\47\0\1\114\4\0"+
+    "\1\115\54\0\1\116\44\0\1\117\57\0\1\120\42\0"+
+    "\1\121\4\0\1\122\11\0\4\72\1\123\13\72\1\0"+
+    "\31\72\40\0\1\124\54\0\1\125\47\0\1\126\33\0"+
+    "\1\127\73\0\1\130\1\131\27\0\1\132\64\0\1\133"+
+    "\54\0\1\134\35\0\1\135\54\0\1\136\42\0\1\137"+
+    "\64\0\1\140\43\0\1\141\65\0\1\142\51\0\1\143"+
+    "\37\0\1\144\40\0\1\145\65\0\1\146\53\0\1\147"+
+    "\46\0\1\150\46\0\1\151\57\0\1\152\46\0\1\153"+
+    "\40\0\1\154\71\0\1\155\47\0\1\156\44\0\1\157"+
+    "\44\0\1\160\45\0\1\161\64\0\1\162\47\0\1\163"+
+    "\44\0\1\164\46\0\1\165\7\0\1\166\3\0\1\167"+
+    "\41\0\1\170\57\0\1\171\36\0\1\172\65\0\1\173"+
+    "\54\0\1\174\45\0\1\175\42\0\1\176\45\0\1\177"+
+    "\60\0\1\200\51\0\1\201\60\0\1\202\33\0\1\203"+
+    "\63\0\1\204\62\0\1\205\1\206\52\0\1\207\42\0"+
+    "\1\210\46\0\1\211\42\0\1\212\45\0\1\213\51\0"+
+    "\1\214\55\0\1\215\57\0\1\216\15\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[4360];
+    int [] result = new int[4158];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -268,17 +266,17 @@ public class Lexer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\11\1\1\4\11\1\1\4\11\15\1\2\11"+
-    "\27\0\1\11\1\1\1\11\4\0\1\11\2\0\1\11"+
-    "\4\0\1\11\1\0\1\11\1\1\1\11\2\0\2\11"+
-    "\2\0\1\1\1\11\4\0\3\11\4\0\1\11\13\0"+
-    "\1\11\1\1\1\11\4\0\1\11\2\0\1\11\6\0"+
-    "\1\1\1\11\2\0\1\11\4\0\4\11\2\0\1\11"+
-    "\1\0\1\11\1\0\1\11\1\0\2\11\7\0\1\11"+
-    "\1\0";
+    "\1\0\2\11\2\1\4\11\1\1\2\11\1\1\2\11"+
+    "\15\1\2\11\1\1\30\0\1\11\1\1\1\0\1\11"+
+    "\3\0\1\11\2\0\1\11\4\0\1\11\1\0\1\11"+
+    "\1\1\1\11\2\0\2\11\2\0\1\1\1\0\1\11"+
+    "\3\0\3\11\4\0\1\11\5\0\1\11\5\0\1\11"+
+    "\1\1\1\11\4\0\1\11\1\0\1\11\6\0\1\1"+
+    "\1\11\1\0\1\11\4\0\4\11\1\0\1\11\1\0"+
+    "\1\11\1\0\3\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[151];
+    int [] result = new int[142];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -847,172 +845,172 @@ public class Lexer implements java_cup.runtime.Scanner {
           // fall through
           case 60: break;
           case 14:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "CADENA_F"); return new Symbol(sym.CADENA_F, yycolumn, yyline, yytext());
+            { 
             }
           // fall through
           case 61: break;
           case 15:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "ARREGLO"); return new Symbol(sym.ARREGLO, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "CADENA_F"); return new Symbol(sym.CADENA_F, yycolumn, yyline, yytext());
             }
           // fall through
           case 62: break;
           case 16:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "DIVISION"); return new Symbol(sym.DIVISION, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "ARREGLO"); return new Symbol(sym.ARREGLO, yycolumn, yyline, yytext());
             }
           // fall through
           case 63: break;
           case 17:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "FIN"); return new Symbol(sym.FIN, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "DIVISION"); return new Symbol(sym.DIVISION, yycolumn, yyline, yytext());
             }
           // fall through
           case 64: break;
           case 18:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MAX"); return new Symbol(sym.MAX, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "FIN"); return new Symbol(sym.FIN, yycolumn, yyline, yytext());
             }
           // fall through
           case 65: break;
           case 19:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MIN"); return new Symbol(sym.MIN, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MAX"); return new Symbol(sym.MAX, yycolumn, yyline, yytext());
             }
           // fall through
           case 66: break;
           case 20:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MODULO"); return new Symbol(sym.MODULO, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MIN"); return new Symbol(sym.MIN, yycolumn, yyline, yytext());
             }
           // fall through
           case 67: break;
           case 21:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MULTIPLICACION"); return new Symbol(sym.MULTIPLICACION, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MODULO"); return new Symbol(sym.MODULO, yycolumn, yyline, yytext());
             }
           // fall through
           case 68: break;
           case 22:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "RESTA"); return new Symbol(sym.RESTA, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MULTIPLICACION"); return new Symbol(sym.MULTIPLICACION, yycolumn, yyline, yytext());
             }
           // fall through
           case 69: break;
           case 23:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "SUMA"); return new Symbol(sym.SUMA, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "RESTA"); return new Symbol(sym.RESTA, yycolumn, yyline, yytext());
             }
           // fall through
           case 70: break;
           case 24:
-            { funciones.TokenList.addTokenToList(yyline ,yycolumn,yytext(), "var"); return new Symbol(sym.VAR, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "SUMA"); return new Symbol(sym.SUMA, yycolumn, yyline, yytext());
             }
           // fall through
           case 71: break;
           case 25:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), " CADENACHAR "); return new Symbol(sym.CADENACHAR, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline ,yycolumn,yytext(), "var"); return new Symbol(sym.VAR, yycolumn, yyline, yytext());
             }
           // fall through
           case 72: break;
           case 26:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "EJEX"); return new Symbol(sym.EJEX, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), " CADENACHAR "); return new Symbol(sym.CADENACHAR, yycolumn, yyline, yytext());
             }
           // fall through
           case 73: break;
           case 27:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "EJEY"); return new Symbol(sym.EJEY, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "EJEX"); return new Symbol(sym.EJEX, yycolumn, yyline, yytext());
             }
           // fall through
           case 74: break;
           case 28:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "EXEC"); return new Symbol(sym.EXEC, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "EJEY"); return new Symbol(sym.EJEY, yycolumn, yyline, yytext());
             }
           // fall through
           case 75: break;
           case 29:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MODA"); return new Symbol(sym.MODA, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "EXEC"); return new Symbol(sym.EXEC, yycolumn, yyline, yytext());
             }
           // fall through
           case 76: break;
           case 30:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "LABEL"); return new Symbol(sym.LABEL, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MODA"); return new Symbol(sym.MODA, yycolumn, yyline, yytext());
             }
           // fall through
           case 77: break;
           case 31:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MEDIA"); return new Symbol(sym.MEDIA, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "LABEL"); return new Symbol(sym.LABEL, yycolumn, yyline, yytext());
             }
           // fall through
           case 78: break;
           case 32:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "PRINT"); return new Symbol(sym.PRINT, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MEDIA"); return new Symbol(sym.MEDIA, yycolumn, yyline, yytext());
             }
           // fall through
           case 79: break;
           case 33:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "COLUMN"); return new Symbol(sym.COLUMN, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "PRINT"); return new Symbol(sym.PRINT, yycolumn, yyline, yytext());
             }
           // fall through
           case 80: break;
           case 34:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "DOUBLE"); return new Symbol(sym.DOUBLE, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "COLUMN"); return new Symbol(sym.COLUMN, yycolumn, yyline, yytext());
             }
           // fall through
           case 81: break;
           case 35:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "TITULO"); return new Symbol(sym.TITULO, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "DOUBLE"); return new Symbol(sym.DOUBLE, yycolumn, yyline, yytext());
             }
           // fall through
           case 82: break;
           case 36:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "VALUES"); return new Symbol(sym.VALUES, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "TITULO"); return new Symbol(sym.TITULO, yycolumn, yyline, yytext());
             }
           // fall through
           case 83: break;
           case 37:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "CONSOLE"); return new Symbol(sym.CONSOLE, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "VALUES"); return new Symbol(sym.VALUES, yycolumn, yyline, yytext());
             }
           // fall through
           case 84: break;
           case 38:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MEDIANA"); return new Symbol(sym.MEDIANA, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "CONSOLE"); return new Symbol(sym.CONSOLE, yycolumn, yyline, yytext());
             }
           // fall through
           case 85: break;
           case 39:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "PROGRAMPAL"); return new Symbol(sym.PROGRAMPAL, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "MEDIANA"); return new Symbol(sym.MEDIANA, yycolumn, yyline, yytext());
             }
           // fall through
           case 86: break;
           case 40:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "TITULOX"); return new Symbol(sym.TITULOX, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "PROGRAMPAL"); return new Symbol(sym.PROGRAMPAL, yycolumn, yyline, yytext());
             }
           // fall through
           case 87: break;
           case 41:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "TITULOY"); return new Symbol(sym.TITULOY, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "TITULOX"); return new Symbol(sym.TITULOX, yycolumn, yyline, yytext());
             }
           // fall through
           case 88: break;
           case 42:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GRAPHBAR"); return new Symbol(sym.GRAPHBAR, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "TITULOY"); return new Symbol(sym.TITULOY, yycolumn, yyline, yytext());
             }
           // fall through
           case 89: break;
           case 43:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GRAPHPIE"); return new Symbol(sym.GRAPHPIE, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GRAPHBAR"); return new Symbol(sym.GRAPHBAR, yycolumn, yyline, yytext());
             }
           // fall through
           case 90: break;
           case 44:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "VARIANZA"); return new Symbol(sym.VARIANZA, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GRAPHPIE"); return new Symbol(sym.GRAPHPIE, yycolumn, yyline, yytext());
             }
           // fall through
           case 91: break;
           case 45:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GRAPHLINE"); return new Symbol(sym.GRAPHLINE, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "VARIANZA"); return new Symbol(sym.VARIANZA, yycolumn, yyline, yytext());
             }
           // fall through
           case 92: break;
           case 46:
-            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "HISTOGRAM"); return new Symbol(sym.HISTOGRAM, yycolumn, yyline, yytext());
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GRAPHLINE"); return new Symbol(sym.GRAPHLINE, yycolumn, yyline, yytext());
             }
           // fall through
           case 93: break;
           case 47:
-            { 
+            { funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "HISTOGRAM"); return new Symbol(sym.HISTOGRAM, yycolumn, yyline, yytext());
             }
           // fall through
           case 94: break;

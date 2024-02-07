@@ -4,6 +4,8 @@ package analizadores;
 import java_cup.runtime.*;
 import java.util.LinkedList;
 import funciones.token;
+import funciones.valor;
+import java.util.ArrayList;
 
 
 //------> Codigo para el parser
@@ -12,6 +14,7 @@ import funciones.token;
 parser code 
 {:
     public String resultado = ""; 
+    public ArrayList<valor> lista = new ArrayList<>();
 
     public void syntax_error(Symbol s)
     {
@@ -35,7 +38,7 @@ terminal String FIN;
 terminal String CONSOLE;
 terminal String CADENA_F;
 terminal String NUMERO;
-terminal String PRINT;
+terminal String PRINT,OPENCOM,CLOSECOM;
 terminal String VAR, DOUBLE, GUION, PROGRAMPAL, ABRIRCORCHETES, CERRARCORCHETES, CADENACHAR, ARREGLO, ARROBA, ABRIRPARENTESIS, CERRARPARENTESIS, SUMA, RESTA, MULTIPLICACION, DIVISION, MODULO, MEDIA, MEDIANA, MODA, VARIANZA, MAX, MIN, COLUMN, EXEC, VALUES, TITULO, LABEL, GRAPHBAR, GRAPHPIE, GRAPHLINE, HISTOGRAM, EJEX, EJEY, TITULOX, TITULOY;
 
 
@@ -43,7 +46,9 @@ terminal String VAR, DOUBLE, GUION, PROGRAMPAL, ABRIRCORCHETES, CERRARCORCHETES,
 non terminal inicio;
 non terminal lista_instr;
 non terminal instruccion;
-non terminal mostrar;
+non terminal impresion ;
+non terminal lista_expresion;
+non terminal expresion;
 
 //------> PRECEDENCIA
 
@@ -59,10 +64,32 @@ lista_instr ::= lista_instr instruccion
     | instruccion
 ;
 
-instruccion ::= mostrar
+instruccion ::= impresion
     | error PUNTOYCOMA
-    | error FIN PUNTOYCOMA
+    | error FIN PUNTOYCOMA 
 ;
 
-mostrar ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL CADENA_F COMA NUMERO COMA CADENA_F FIN PUNTOYCOMA {: System.out.println("nomas preuba"); :}
+impresion ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL lista_expresion FIN PUNTOYCOMA     {: 
+        System.out.print("! Salida: ");
+        for (valor v : lista) {
+            System.out.print("," + v.resultado);
+        }
+        lista.clear(); // Limpiar la lista después de imprimir
+    :};
+
+lista_expresion ::= lista_expresion COMA expresion
+	| expresion
+;
+
+
+expresion ::= CADENA_F:a
+            {:
+                valor elemento = new valor("string", "primitivo", a, null, a);
+		lista.add(elemento);
+            :}
+        | NUMERO:a
+            {:
+                valor elemento = new valor("int", "primitivo", a, null, a);
+		lista.add(elemento);
+           :}
 ;

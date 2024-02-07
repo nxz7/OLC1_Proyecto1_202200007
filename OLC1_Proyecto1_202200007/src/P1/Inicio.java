@@ -19,17 +19,18 @@ public class Inicio {
         //analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
         
         String entrada = """ 
-                         console::print="hola",27,"adios" end;+
-                         CONSOLE:: PRINT ) CONSOLE ?
-                         div(6,6); / ??
-                         <!COMENTARIO 
-                         DE DOS!>
-                         console::print="SEGUNDO",2,"NUMDOS" end;+
-                         !COMENTARIO
+                         console::print="hola",27,"adios" end;
+                         !COMENTARIOll
+                         + /
+                         console::print="dos",7,"jeje" end;?
+                         <!skshkshs
+                         sjsjsj!>
+                         console::print="dos",7,"jeje" end;
                          """;
         //MOSTRAR
         
-        System.out.print("in--");
+        System.out.println("-------------------------------------------------------------------------------");
+        System.out.print("\"");
         
         analizar(entrada);
         TokenList.printTokenList();
