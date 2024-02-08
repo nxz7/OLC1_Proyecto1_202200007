@@ -47,6 +47,8 @@ comentario_una = [\!][^\n]+
 "var" {funciones.TokenList.addTokenToList(yyline ,yycolumn,yytext(), "var"); return new Symbol(sym.VAR, yycolumn, yyline, yytext()); }
 "DOUBLE" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "DOUBLE"); return new Symbol(sym.DOUBLE, yycolumn, yyline, yytext()); }
 "-" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GUION"); return new Symbol(sym.GUION, yycolumn, yyline, yytext()); }
+
+
 "PROGRAM" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "PROGRAMPAL"); return new Symbol(sym.PROGRAMPAL, yycolumn, yyline, yytext()); }
 "[" {funciones.TokenList.addTokenToList(yyline ,yycolumn,yytext(), "ABRIRCORCHETES"); return new Symbol(sym.ABRIRCORCHETES, yycolumn, yyline, yytext()); }
 "]" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "CERRARCORCHETES"); return new Symbol(sym.CERRARCORCHETES, yycolumn, yyline, yytext()); }
@@ -55,6 +57,8 @@ comentario_una = [\!][^\n]+
 "@" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "ARROBA"); return new Symbol(sym.ARROBA, yycolumn, yyline, yytext()); }
 "(" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "ABRIRPARENTESIS"); return new Symbol(sym.ABRIRPARENTESIS, yycolumn, yyline, yytext()); }
 ")" {funciones.TokenList.addTokenToList(yyline ,yycolumn,yytext(), "CERRARPARENTESIS"); return new Symbol(sym.CERRARPARENTESIS, yycolumn, yyline, yytext()); }
+
+
 //OP ARITMETICAS
 "SUM" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "SUMA"); return new Symbol(sym.SUMA, yycolumn, yyline, yytext()); }
 "RES" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "RESTA"); return new Symbol(sym.RESTA, yycolumn, yyline, yytext()); }

@@ -91,8 +91,8 @@ expresion ::= CADENA_F:a
             :}
         | aritmetica:val
             {:           
-                if (val instanceof Integer) {
-                    valor elemento = new valor("int", "primitivo", val.toString(), null, val.toString());
+                if (val instanceof Double) {
+                    valor elemento = new valor("double", "primitivo", val.toString(), null, val.toString());
                     lista.add(elemento);
                 } else if (val instanceof String) {
                     valor elemento = new valor("string", "primitivo", (String) val, null, (String) val);
@@ -106,31 +106,31 @@ expresion ::= CADENA_F:a
 
 aritmetica ::= NUMERO:val    
             {: 
-                RESULT = Integer.parseInt(val);
+                RESULT = Double.parseDouble(val);
             :} 
         |  SUMA ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
            {: 
-                        int result_s = (Integer) izq + (Integer) der;
+                        double result_s = (Double) izq + (Double) der;
                         RESULT = result_s; 
             :}
         |  RESTA ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
            {: 
-                        int result_s = (Integer) izq - (Integer) der;
+                        double result_s = (Double) izq - (Double) der;
                         RESULT = result_s; 
             :}
         |  MULTIPLICACION ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
            {: 
-                        int result_s = (Integer) izq * (Integer) der;
+                        double result_s = (Double) izq * (Double) der;
                         RESULT = result_s; 
             :}
         |  DIVISION ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
            {: 
-                        int result_s = (Integer) izq / (Integer) der;
+                        double result_s = (Double) izq / (Double) der;
                         RESULT = result_s; 
             :}
         |  MODULO ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
            {: 
-                        int result_s = (Integer) izq % (Integer) der;
+                        double result_s = (Double) izq % (Double) der;
                         RESULT = result_s; 
             :}
 ;

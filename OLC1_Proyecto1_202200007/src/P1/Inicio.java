@@ -25,7 +25,7 @@ public class Inicio {
                          console::print="dos",7,"jeje" end;?
                          <!skshkshs
                          sjsjsj!>
-                         console::print=div(10,2),mod(5,4),mul(5,4) end;
+                         console::print=div(10,res(11,7)),mod(5,2),mul(5,4) end;
                          """;
         //MOSTRAR
         

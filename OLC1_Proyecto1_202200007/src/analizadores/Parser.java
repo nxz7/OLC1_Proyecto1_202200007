@@ -321,8 +321,8 @@ class CUP$Parser$actions {
 		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		           
-                if (val instanceof Integer) {
-                    valor elemento = new valor("int", "primitivo", val.toString(), null, val.toString());
+                if (val instanceof Double) {
+                    valor elemento = new valor("double", "primitivo", val.toString(), null, val.toString());
                     lista.add(elemento);
                 } else if (val instanceof String) {
                     valor elemento = new valor("string", "primitivo", (String) val, null, (String) val);
@@ -343,7 +343,7 @@ class CUP$Parser$actions {
 		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		String val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
 		 
-                RESULT = Integer.parseInt(val);
+                RESULT = Double.parseDouble(val);
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -360,7 +360,7 @@ class CUP$Parser$actions {
 		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		 
-                        int result_s = (Integer) izq + (Integer) der;
+                        double result_s = (Double) izq + (Double) der;
                         RESULT = result_s; 
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -378,7 +378,7 @@ class CUP$Parser$actions {
 		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		 
-                        int result_s = (Integer) izq - (Integer) der;
+                        double result_s = (Double) izq - (Double) der;
                         RESULT = result_s; 
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -396,7 +396,7 @@ class CUP$Parser$actions {
 		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		 
-                        int result_s = (Integer) izq * (Integer) der;
+                        double result_s = (Double) izq * (Double) der;
                         RESULT = result_s; 
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -414,7 +414,7 @@ class CUP$Parser$actions {
 		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		 
-                        int result_s = (Integer) izq / (Integer) der;
+                        double result_s = (Double) izq / (Double) der;
                         RESULT = result_s; 
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -432,7 +432,7 @@ class CUP$Parser$actions {
 		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		 
-                        int result_s = (Integer) izq % (Integer) der;
+                        double result_s = (Double) izq % (Double) der;
                         RESULT = result_s; 
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
