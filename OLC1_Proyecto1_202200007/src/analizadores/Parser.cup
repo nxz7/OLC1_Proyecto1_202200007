@@ -49,6 +49,7 @@ non terminal instruccion;
 non terminal impresion ;
 non terminal lista_expresion;
 non terminal expresion;
+non terminal aritmetica;
 
 //------> PRECEDENCIA
 
@@ -70,11 +71,12 @@ instruccion ::= impresion
 ;
 
 impresion ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL lista_expresion FIN PUNTOYCOMA     {: 
-        System.out.print("! Salida: ");
+        System.out.print("!Salida: ");
         for (valor v : lista) {
             System.out.print("," + v.resultado);
         }
         lista.clear(); // Limpiar la lista después de imprimir
+        System.out.println(" ");
     :};
 
 lista_expresion ::= lista_expresion COMA expresion
@@ -87,9 +89,48 @@ expresion ::= CADENA_F:a
                 valor elemento = new valor("string", "primitivo", a, null, a);
 		lista.add(elemento);
             :}
-        | NUMERO:a
-            {:
-                valor elemento = new valor("int", "primitivo", a, null, a);
-		lista.add(elemento);
+        | aritmetica:val
+            {:           
+                if (val instanceof Integer) {
+                    valor elemento = new valor("int", "primitivo", val.toString(), null, val.toString());
+                    lista.add(elemento);
+                } else if (val instanceof String) {
+                    valor elemento = new valor("string", "primitivo", (String) val, null, (String) val);
+                    lista.add(elemento);
+                } else {
+                    System.out.print("NO FUNCIONO");
+                }
            :}
+;
+
+
+aritmetica ::= NUMERO:val    
+            {: 
+                RESULT = Integer.parseInt(val);
+            :} 
+        |  SUMA ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
+           {: 
+                        int result_s = (Integer) izq + (Integer) der;
+                        RESULT = result_s; 
+            :}
+        |  RESTA ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
+           {: 
+                        int result_s = (Integer) izq - (Integer) der;
+                        RESULT = result_s; 
+            :}
+        |  MULTIPLICACION ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
+           {: 
+                        int result_s = (Integer) izq * (Integer) der;
+                        RESULT = result_s; 
+            :}
+        |  DIVISION ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
+           {: 
+                        int result_s = (Integer) izq / (Integer) der;
+                        RESULT = result_s; 
+            :}
+        |  MODULO ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
+           {: 
+                        int result_s = (Integer) izq % (Integer) der;
+                        RESULT = result_s; 
+            :}
 ;

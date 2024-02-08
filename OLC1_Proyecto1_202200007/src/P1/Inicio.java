@@ -19,13 +19,13 @@ public class Inicio {
         //analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
         
         String entrada = """ 
-                         console::print="hola",27,"adios" end;
+                         console::print="hola",27, SUM(7,5) end;
                          !COMENTARIOll
                          + /
                          console::print="dos",7,"jeje" end;?
                          <!skshkshs
                          sjsjsj!>
-                         console::print="dos",7,"jeje" end;
+                         console::print=div(10,2),mod(5,4),mul(5,4) end;
                          """;
         //MOSTRAR
         

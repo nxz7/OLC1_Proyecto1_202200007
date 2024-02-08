@@ -35,10 +35,12 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\014\000\002\002\004\000\002\002\003\000\002\003" +
+    "\000\022\000\002\002\004\000\002\002\003\000\002\003" +
     "\004\000\002\003\003\000\002\004\003\000\002\004\004" +
     "\000\002\004\005\000\002\005\012\000\002\006\005\000" +
-    "\002\006\003\000\002\007\003\000\002\007\003" });
+    "\002\006\003\000\002\007\003\000\002\007\003\000\002" +
+    "\010\003\000\002\010\010\000\002\010\010\000\002\010" +
+    "\010\000\002\010\010\000\002\010\010" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -46,21 +48,47 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\030\000\006\003\004\011\006\001\002\000\006\005" +
-    "\030\010\031\001\002\000\010\002\ufffe\003\ufffe\011\ufffe" +
+    "\000\067\000\006\003\004\011\006\001\002\000\006\005" +
+    "\067\010\070\001\002\000\010\002\ufffe\003\ufffe\011\ufffe" +
     "\001\002\000\004\006\014\001\002\000\010\002\000\003" +
     "\004\011\006\001\002\000\004\002\012\001\002\000\010" +
     "\002\ufffd\003\ufffd\011\ufffd\001\002\000\004\002\001\001" +
     "\002\000\010\002\uffff\003\uffff\011\uffff\001\002\000\004" +
     "\006\015\001\002\000\004\014\016\001\002\000\004\004" +
-    "\017\001\002\000\006\012\023\013\020\001\002\000\006" +
-    "\007\ufff6\010\ufff6\001\002\000\006\007\024\010\025\001" +
-    "\002\000\006\007\ufff8\010\ufff8\001\002\000\006\007\ufff7" +
-    "\010\ufff7\001\002\000\006\012\023\013\020\001\002\000" +
-    "\004\005\026\001\002\000\010\002\ufffa\003\ufffa\011\ufffa" +
-    "\001\002\000\006\007\ufff9\010\ufff9\001\002\000\010\002" +
-    "\ufffc\003\ufffc\011\ufffc\001\002\000\004\005\032\001\002" +
-    "\000\010\002\ufffb\003\ufffb\011\ufffb\001\002" });
+    "\017\001\002\000\020\012\027\013\022\032\020\033\030" +
+    "\034\021\035\026\036\024\001\002\000\004\030\062\001" +
+    "\002\000\004\030\055\001\002\000\010\007\ufff5\010\ufff5" +
+    "\031\ufff5\001\002\000\006\007\ufff8\010\ufff8\001\002\000" +
+    "\004\030\050\001\002\000\006\007\ufff6\010\ufff6\001\002" +
+    "\000\004\030\043\001\002\000\006\007\ufff7\010\ufff7\001" +
+    "\002\000\004\030\036\001\002\000\006\007\032\010\033" +
+    "\001\002\000\020\012\027\013\022\032\020\033\030\034" +
+    "\021\035\026\036\024\001\002\000\004\005\034\001\002" +
+    "\000\010\002\ufffa\003\ufffa\011\ufffa\001\002\000\006\007" +
+    "\ufff9\010\ufff9\001\002\000\016\013\022\032\020\033\030" +
+    "\034\021\035\026\036\024\001\002\000\004\007\040\001" +
+    "\002\000\016\013\022\032\020\033\030\034\021\035\026" +
+    "\036\024\001\002\000\004\031\042\001\002\000\010\007" +
+    "\ufff3\010\ufff3\031\ufff3\001\002\000\016\013\022\032\020" +
+    "\033\030\034\021\035\026\036\024\001\002\000\004\007" +
+    "\045\001\002\000\016\013\022\032\020\033\030\034\021" +
+    "\035\026\036\024\001\002\000\004\031\047\001\002\000" +
+    "\010\007\ufff1\010\ufff1\031\ufff1\001\002\000\016\013\022" +
+    "\032\020\033\030\034\021\035\026\036\024\001\002\000" +
+    "\004\007\052\001\002\000\016\013\022\032\020\033\030" +
+    "\034\021\035\026\036\024\001\002\000\004\031\054\001" +
+    "\002\000\010\007\ufff0\010\ufff0\031\ufff0\001\002\000\016" +
+    "\013\022\032\020\033\030\034\021\035\026\036\024\001" +
+    "\002\000\004\007\057\001\002\000\016\013\022\032\020" +
+    "\033\030\034\021\035\026\036\024\001\002\000\004\031" +
+    "\061\001\002\000\010\007\ufff2\010\ufff2\031\ufff2\001\002" +
+    "\000\016\013\022\032\020\033\030\034\021\035\026\036" +
+    "\024\001\002\000\004\007\064\001\002\000\016\013\022" +
+    "\032\020\033\030\034\021\035\026\036\024\001\002\000" +
+    "\004\031\066\001\002\000\010\007\ufff4\010\ufff4\031\ufff4" +
+    "\001\002\000\010\002\ufffc\003\ufffc\011\ufffc\001\002\000" +
+    "\004\005\071\001\002\000\010\002\ufffb\003\ufffb\011\ufffb" +
+    "\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -68,15 +96,27 @@ public class Parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\030\000\012\002\007\003\006\004\004\005\010\001" +
+    "\000\067\000\012\002\007\003\006\004\004\005\010\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\006\004\012\005\010\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\006\006" +
-    "\020\007\021\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\004\007\026\001" +
+    "\001\001\000\002\001\001\000\002\001\001\000\010\006" +
+    "\030\007\022\010\024\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001" });
+    "\000\002\001\001\000\002\001\001\000\006\007\034\010" +
+    "\024\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\010\036\001\001\000\002\001\001\000" +
+    "\004\010\040\001\001\000\002\001\001\000\002\001\001" +
+    "\000\004\010\043\001\001\000\002\001\001\000\004\010" +
+    "\045\001\001\000\002\001\001\000\002\001\001\000\004" +
+    "\010\050\001\001\000\002\001\001\000\004\010\052\001" +
+    "\001\000\002\001\001\000\002\001\001\000\004\010\055" +
+    "\001\001\000\002\001\001\000\004\010\057\001\001\000" +
+    "\002\001\001\000\002\001\001\000\004\010\062\001\001" +
+    "\000\002\001\001\000\004\010\064\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -229,11 +269,12 @@ class CUP$Parser$actions {
             {
               Object RESULT =null;
 		 
-        System.out.print("! Salida: ");
+        System.out.print("!Salida: ");
         for (valor v : lista) {
             System.out.print("," + v.resultado);
         }
         lista.clear(); // Limpiar la lista después de imprimir
+        System.out.println(" ");
     
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("impresion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -273,17 +314,128 @@ class CUP$Parser$actions {
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // expresion ::= NUMERO 
+          case 11: // expresion ::= aritmetica 
             {
               Object RESULT =null;
-		int aleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
-		int aright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
-		String a = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		
-                valor elemento = new valor("int", "primitivo", a, null, a);
-		lista.add(elemento);
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		Object val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		           
+                if (val instanceof Integer) {
+                    valor elemento = new valor("int", "primitivo", val.toString(), null, val.toString());
+                    lista.add(elemento);
+                } else if (val instanceof String) {
+                    valor elemento = new valor("string", "primitivo", (String) val, null, (String) val);
+                    lista.add(elemento);
+                } else {
+                    System.out.print("NO FUNCIONO");
+                }
            
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expresion",5, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // aritmetica ::= NUMERO 
+            {
+              Object RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
+		String val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
+		 
+                RESULT = Integer.parseInt(val);
+            
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 13: // aritmetica ::= SUMA ABRIRPARENTESIS aritmetica COMA aritmetica CERRARPARENTESIS 
+            {
+              Object RESULT =null;
+		int izqleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).left;
+		int izqright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
+		Object izq = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+		int derleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		 
+                        int result_s = (Integer) izq + (Integer) der;
+                        RESULT = result_s; 
+            
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 14: // aritmetica ::= RESTA ABRIRPARENTESIS aritmetica COMA aritmetica CERRARPARENTESIS 
+            {
+              Object RESULT =null;
+		int izqleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).left;
+		int izqright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
+		Object izq = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+		int derleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		 
+                        int result_s = (Integer) izq - (Integer) der;
+                        RESULT = result_s; 
+            
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 15: // aritmetica ::= MULTIPLICACION ABRIRPARENTESIS aritmetica COMA aritmetica CERRARPARENTESIS 
+            {
+              Object RESULT =null;
+		int izqleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).left;
+		int izqright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
+		Object izq = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+		int derleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		 
+                        int result_s = (Integer) izq * (Integer) der;
+                        RESULT = result_s; 
+            
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 16: // aritmetica ::= DIVISION ABRIRPARENTESIS aritmetica COMA aritmetica CERRARPARENTESIS 
+            {
+              Object RESULT =null;
+		int izqleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).left;
+		int izqright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
+		Object izq = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+		int derleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		 
+                        int result_s = (Integer) izq / (Integer) der;
+                        RESULT = result_s; 
+            
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+            }
+          return CUP$Parser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 17: // aritmetica ::= MODULO ABRIRPARENTESIS aritmetica COMA aritmetica CERRARPARENTESIS 
+            {
+              Object RESULT =null;
+		int izqleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).left;
+		int izqright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
+		Object izq = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
+		int derleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
+		int derright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
+		Object der = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
+		 
+                        int result_s = (Integer) izq % (Integer) der;
+                        RESULT = result_s; 
+            
+              CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
 
