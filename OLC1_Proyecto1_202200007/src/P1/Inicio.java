@@ -22,10 +22,15 @@ public class Inicio {
                          console::print="hola",27, SUM(7,5) end;
                          !COMENTARIOll
                          + /
+                        var:char[]::primero <- "prueba" end;
+                         
                          console::print="dos",7,"jeje" end;?
                          <!skshkshs
                          sjsjsj!>
+                         
+                         
                          console::print=div(10,res(11,7)),mod(5,2),mul(5,4) end;
+                         var:double::segundo <- 2.5 end;
                          """;
         //MOSTRAR
         

@@ -28,7 +28,9 @@ numero = ([0-9]+\.[0-9]+)|([0-9]+)
 cadena_f=[\"][^\"\n]+[\"]
 comentario_multi = [\<][\!][^\!\>]+[\!][\>]
 comentario_una = [\!][^\n]+
-//letra = [^\s]
+letra = [A-Za-z]
+
+PALABRA_I={letra}({letra}|{letra}|[0-9]|_)+
 
 //ARREGLAR EL COMENTARIO, QUE SE AGREGA A ERROR 
 
@@ -44,9 +46,9 @@ comentario_una = [\!][^\n]+
 "=" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "IGUAL"); return new Symbol(sym.IGUAL, yycolumn, yyline, yytext()); }
 {numero}  {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "NUMERO"); return new Symbol(sym.NUMERO, yycolumn, yyline, yytext()); }
 {cadena_f}  {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "CADENA_F"); return new Symbol(sym.CADENA_F, yycolumn, yyline, yytext()); }
-"var" {funciones.TokenList.addTokenToList(yyline ,yycolumn,yytext(), "var"); return new Symbol(sym.VAR, yycolumn, yyline, yytext()); }
+"var" {funciones.TokenList.addTokenToList(yyline ,yycolumn,yytext(), "VAR"); return new Symbol(sym.VAR, yycolumn, yyline, yytext()); }
 "DOUBLE" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "DOUBLE"); return new Symbol(sym.DOUBLE, yycolumn, yyline, yytext()); }
-"-" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GUION"); return new Symbol(sym.GUION, yycolumn, yyline, yytext()); }
+"<-" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GUION"); return new Symbol(sym.GUION, yycolumn, yyline, yytext()); }
 
 
 "PROGRAM" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "PROGRAMPAL"); return new Symbol(sym.PROGRAMPAL, yycolumn, yyline, yytext()); }
@@ -92,7 +94,7 @@ comentario_una = [\!][^\n]+
 
 
 
-
+{PALABRA_I}   { return new Symbol(sym.PALABRA_I, yycolumn, yyline, yytext()); }
 {comentario_multi} {}
 {comentario_una} {}
 

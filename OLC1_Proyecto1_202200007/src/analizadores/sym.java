@@ -14,6 +14,7 @@ public class sym {
   public static final int GRAPHPIE = 41;
   public static final int DOUBLE = 14;
   public static final int RESTA = 25;
+  public static final int PALABRA_I = 48;
   public static final int GRAPHBAR = 40;
   public static final int FIN = 6;
   public static final int TITULOY = 47;
@@ -104,7 +105,8 @@ public class sym {
   "EJEX",
   "EJEY",
   "TITULOX",
-  "TITULOY"
+  "TITULOY",
+  "PALABRA_I"
   };
 }
 

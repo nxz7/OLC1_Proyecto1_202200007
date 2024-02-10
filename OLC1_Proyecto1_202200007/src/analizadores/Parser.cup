@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import funciones.token;
 import funciones.valor;
 import java.util.ArrayList;
-
+import funciones.valor_variable;
 
 //------> Codigo para el parser
 //------> Declaracion de variables, funciones y funciones de error
@@ -15,6 +15,8 @@ parser code
 {:
     public String resultado = ""; 
     public ArrayList<valor> lista = new ArrayList<>();
+    public ArrayList<valor_variable> tabla_simbolos = new ArrayList<>();
+
 
     public void syntax_error(Symbol s)
     {
@@ -40,7 +42,7 @@ terminal String CADENA_F;
 terminal String NUMERO;
 terminal String PRINT,OPENCOM,CLOSECOM;
 terminal String VAR, DOUBLE, GUION, PROGRAMPAL, ABRIRCORCHETES, CERRARCORCHETES, CADENACHAR, ARREGLO, ARROBA, ABRIRPARENTESIS, CERRARPARENTESIS, SUMA, RESTA, MULTIPLICACION, DIVISION, MODULO, MEDIA, MEDIANA, MODA, VARIANZA, MAX, MIN, COLUMN, EXEC, VALUES, TITULO, LABEL, GRAPHBAR, GRAPHPIE, GRAPHLINE, HISTOGRAM, EJEX, EJEY, TITULOX, TITULOY;
-
+terminal String PALABRA_I;
 
 //------> Declaración de no terminales
 non terminal inicio;
@@ -50,6 +52,9 @@ non terminal impresion ;
 non terminal lista_expresion;
 non terminal expresion;
 non terminal aritmetica;
+non terminal variables;
+non terminal tipo;
+non terminal lista_arreglo;
 
 //------> PRECEDENCIA
 
@@ -66,6 +71,7 @@ lista_instr ::= lista_instr instruccion
 ;
 
 instruccion ::= impresion
+    | variables
     | error PUNTOYCOMA
     | error FIN PUNTOYCOMA 
 ;
@@ -88,15 +94,19 @@ expresion ::= CADENA_F:a
             {:
                 valor elemento = new valor("string", "primitivo", a, null, a);
 		lista.add(elemento);
+                String valor_var= a;
+                RESULT =valor_var;
             :}
         | aritmetica:val
             {:           
                 if (val instanceof Double) {
                     valor elemento = new valor("double", "primitivo", val.toString(), null, val.toString());
                     lista.add(elemento);
+                    RESULT =val;
                 } else if (val instanceof String) {
                     valor elemento = new valor("string", "primitivo", (String) val, null, (String) val);
                     lista.add(elemento);
+                    RESULT =val;
                 } else {
                     System.out.print("NO FUNCIONO");
                 }
@@ -133,4 +143,54 @@ aritmetica ::= NUMERO:val
                         double result_s = (Double) izq % (Double) der;
                         RESULT = result_s; 
             :}
+;
+
+
+variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expresion:val_var FIN PUNTOYCOMA
+            {:
+                    if (tp == "double") {
+                        valor_variable nueva_var = new valor_variable(teid.toString(), "double", val_var.toString(), null, 0, 0, val_var.toString());
+                        tabla_simbolos.add(nueva_var);
+                        lista.clear();
+                        for (valor_variable variable : tabla_simbolos) {
+                            System.out.println("ID: " + variable.id);
+                            System.out.println("valor: " + variable.valoract);
+                            System.out.println("tipo: " + variable.tipo);
+                        }
+
+                    } else if (tp== "String") {
+                        valor_variable nueva_var = new valor_variable(teid.toString(), "cadena", val_var.toString(), null, 0, 0, val_var.toString());
+                        tabla_simbolos.add(nueva_var);
+                        lista.clear();
+                        for (valor_variable variable : tabla_simbolos) {
+                            System.out.println("ID: " + variable.id);
+                            System.out.println("valor: " + variable.valoract);
+                            System.out.println("tipo: " + variable.tipo);
+                        }
+
+
+                    } else {
+                                System.out.println("ELEGIR UN VALOR VALIDO PARA CREAR LA VARIABLE");
+                    }
+            :}
+        | ARREGLO DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS ARROBA PALABRA_I GUION ABRIRCORCHETES lista_arreglo:at CERRARCORCHETES FIN PUNTOYCOMA
+            {:           
+                        System.out.println("DECLARAR ARREGLOS");
+           :}
+;
+
+
+tipo::= DOUBLE:tp
+            {:
+                String tipo_s = "double";
+                RESULT = tipo_s; 
+            :}
+        | CADENACHAR ABRIRCORCHETES CERRARCORCHETES
+            {:           
+                String tipo_s = "String";
+                RESULT = tipo_s; 
+           :}
+;
+
+lista_arreglo::= NUMERO
 ;
