@@ -31,10 +31,11 @@ public class Inicio {
                          var:double::segundo <- 2.5 end;
                          console::print="dospuntoCNCO",segundo end;?
                          
-                         !arr:char[]::@carray <- ["primer", "arreglo", "prueba" ] end;
+                         arr:char[]::@carray <- ["todo", "es", "nuevo" ] end;
+                         
                          console::print=div(10,res(11,7)),mod(5,2),mul(segundo,2) end;
                          """;
-        //MOSTRAR
+        //MOSTRAR---------
         
         System.out.println("-------------------------------------------------------------------------------");
         System.out.print("\"");

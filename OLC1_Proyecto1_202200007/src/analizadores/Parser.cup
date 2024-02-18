@@ -16,7 +16,7 @@ parser code
     public String resultado = ""; 
     public ArrayList<valor> lista = new ArrayList<>();
     public ArrayList<valor_variable> tabla_simbolos = new ArrayList<>();
-
+    public ArrayList<Object> arrayVar = new ArrayList<>();
 
     public void syntax_error(Symbol s)
     {
@@ -55,6 +55,7 @@ non terminal aritmetica;
 non terminal variables;
 non terminal tipo;
 non terminal lista_arreglo;
+non terminal arrVal;
 
 //------> PRECEDENCIA
 
@@ -207,9 +208,41 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
                                 System.out.println("ELEGIR UN VALOR VALIDO PARA CREAR LA VARIABLE");
                     }
             :}
-        | ARREGLO DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS ARROBA PALABRA_I GUION ABRIRCORCHETES lista_arreglo:at CERRARCORCHETES FIN PUNTOYCOMA
+        | ARREGLO DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS ARROBA PALABRA_I:teid GUION ABRIRCORCHETES lista_arreglo:at CERRARCORCHETES FIN PUNTOYCOMA
             {:           
-                        System.out.println("DECLARAR ARREGLOS");
+                    System.out.println("DECLARAR ARREGLOS");
+                    if (tp == "double") {
+                        valor_variable nuevo_arr = new valor_variable(teid.toString(), "double", "arreglo", arrayVar, 0, 0, "arreglo");
+                        tabla_simbolos.add(nuevo_arr);
+                        lista.clear();
+                        for (valor_variable variable : tabla_simbolos) {
+                            System.out.println("ID: " + nuevo_arr.id);
+                            System.out.println("tipo: " + nuevo_arr.tipo);
+                            System.out.println("VALORES" );
+                            for (Object value : nuevo_arr.valorArreglo) {
+                                System.out.println(value);
+                            }
+                        }
+                        arrayVar.clear();
+
+                    } else if (tp== "String") {
+                        valor_variable nuevo_arr = new valor_variable(teid.toString(), "cadena", "arreglo", arrayVar, 0, 0, "arreglo");
+                        tabla_simbolos.add(nuevo_arr);
+                        lista.clear();
+
+                        System.out.println("ID: " + nuevo_arr.id);
+                        System.out.println("tipo: " + nuevo_arr.tipo);
+                        System.out.println("VALORES" );
+                        for (Object value : nuevo_arr.valorArreglo) {
+                            System.out.println(value);
+                        }
+
+                        arrayVar.clear();
+
+
+                    } else {
+                                System.out.println("ELEGIR UN VALOR VALIDO PARA CREAR LA VARIABLE");
+                    }
            :}
 ;
 
@@ -226,5 +259,27 @@ tipo::= DOUBLE:tp
            :}
 ;
 
-lista_arreglo::= NUMERO
+lista_arreglo::= lista_arreglo COMA arrVal
+        |arrVal
+;
+
+
+arrVal ::= CADENA_F:a
+            {:
+		arrayVar.add(a);
+                String valor_var= a;
+                RESULT =valor_var;
+            :}
+        | aritmetica:val
+            {:           
+                if (val instanceof Double) {
+                    arrayVar.add(val);
+                    RESULT =val;
+                } else if (val instanceof String) {
+                    arrayVar.add(val);
+                    RESULT =val;
+                } else {
+                    System.out.print("NO FUNCIONO");
+                }
+           :}
 ;

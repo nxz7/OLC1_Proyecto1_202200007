@@ -15,12 +15,12 @@ public class valor_variable {
     public String tipo;                                 
     //public String clase;                                 
     public String valoract;                       
-    public ArrayList<String> valorArreglo;              
+    public ArrayList<Object> valorArreglo;              
     public int fila;                                    // -> implementar despues
     public int columna;                                 // -> implementar despues  
     public String valorst;             
     
-    public valor_variable(String id, String tipo, String valoract, ArrayList<String> valorArreglo, int fila, int columna, String valorst){
+    public valor_variable(String id, String tipo, String valoract, ArrayList<Object> valorArreglo, int fila, int columna, String valorst){
         
         this.id = id;
         this.tipo = tipo;
