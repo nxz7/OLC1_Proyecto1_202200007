@@ -31,4 +31,5 @@ public class valor_variable {
         this.columna = columna;
         this.valorst = valorst;
     }
+    
 }

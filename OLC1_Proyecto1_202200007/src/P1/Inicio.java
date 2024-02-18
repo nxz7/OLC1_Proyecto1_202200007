@@ -16,21 +16,23 @@ public class Inicio {
         inicioM.setVisible(true);
         //funciones.funcion.mostrar("hola");s
         
-        //analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
+        analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
         
         String entrada = """ 
                          console::print="hola",27, SUM(7,5) end;
                          !COMENTARIOll
                          + /
-                        var:char[]::primero <- "prueba" end;
+                         var:char[]::primero <- "prueba" end;
                          
-                         console::print="dos",7,"jeje" end;?
+                         console::print="dos",7,"jeje", primero end;?
                          <!skshkshs
                          sjsjsj!>
                          
-                         
-                         console::print=div(10,res(11,7)),mod(5,2),mul(5,4) end;
                          var:double::segundo <- 2.5 end;
+                         console::print="dospuntoCNCO",segundo end;?
+                         
+                         !arr:char[]::@carray <- ["primer", "arreglo", "prueba" ] end;
+                         console::print=div(10,res(11,7)),mod(5,2),mul(segundo,2) end;
                          """;
         //MOSTRAR
         

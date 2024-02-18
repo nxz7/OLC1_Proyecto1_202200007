@@ -117,7 +117,41 @@ expresion ::= CADENA_F:a
 aritmetica ::= NUMERO:val    
             {: 
                 RESULT = Double.parseDouble(val);
-            :} 
+            :}
+        | PALABRA_I:varbuscar
+            {:           
+                boolean variableExists = false;
+                for (valor_variable variable : tabla_simbolos) {
+                    if (variable.id.equals(varbuscar)) {
+                        variableExists = true;
+                        System.out.println("variable encontrada");
+                        if (variable.tipo.equals("cadena")) {
+                            System.out.println("es una cadena");
+                            varbuscar= variable.valoract;
+                            RESULT= varbuscar;
+                        } else if (variable.tipo.equals("double")) {
+                            // If tipo is "double", convert valoract to double
+                            double valorDouble;
+                            if (variable.valoract instanceof String) {
+                                // de str a double
+                                valorDouble = Double.parseDouble((String) variable.valoract);
+                                 RESULT=valorDouble;
+                            } else {
+                                // otros tipos
+                                System.out.println("Unsupported data type for valoract: " + variable.valoract.getClass().getName());
+                                break; // bai 
+                            }
+                        }
+                        //RESULT = varbuscar;
+                        break; // No need to continue searching once found
+                    }
+                }
+
+                if (!variableExists) {
+                    System.out.println("Variable " + varbuscar + " not found.");
+                }
+
+           :}
         |  SUMA ABRIRPARENTESIS aritmetica:izq COMA aritmetica:der CERRARPARENTESIS  
            {: 
                         double result_s = (Double) izq + (Double) der;
