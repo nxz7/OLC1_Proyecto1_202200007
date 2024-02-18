@@ -47,6 +47,7 @@ public class sym {
   public static final int VARIANZA = 32;
   public static final int MEDIA = 29;
   public static final int CERRARPARENTESIS = 23;
+  public static final int GUIONREV = 49;
   public static final int EXEC = 36;
   public static final int LABEL = 39;
   public static final int DIVISION = 27;
@@ -106,7 +107,8 @@ public class sym {
   "EJEY",
   "TITULOX",
   "TITULOY",
-  "PALABRA_I"
+  "PALABRA_I",
+  "GUIONREV"
   };
 }
 

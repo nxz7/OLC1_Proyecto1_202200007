@@ -7,6 +7,7 @@ import funciones.token;
 import funciones.valor;
 import java.util.ArrayList;
 import funciones.valor_variable;
+import java.lang.reflect.Array;
 
 //------> Codigo para el parser
 //------> Declaracion de variables, funciones y funciones de error
@@ -17,7 +18,7 @@ parser code
     public ArrayList<valor> lista = new ArrayList<>();
     public ArrayList<valor_variable> tabla_simbolos = new ArrayList<>();
     public ArrayList<Object> arrayVar = new ArrayList<>();
-
+    //public static String titulog;
     public void syntax_error(Symbol s)
     {
             System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
@@ -42,7 +43,7 @@ terminal String CADENA_F;
 terminal String NUMERO;
 terminal String PRINT,OPENCOM,CLOSECOM;
 terminal String VAR, DOUBLE, GUION, PROGRAMPAL, ABRIRCORCHETES, CERRARCORCHETES, CADENACHAR, ARREGLO, ARROBA, ABRIRPARENTESIS, CERRARPARENTESIS, SUMA, RESTA, MULTIPLICACION, DIVISION, MODULO, MEDIA, MEDIANA, MODA, VARIANZA, MAX, MIN, COLUMN, EXEC, VALUES, TITULO, LABEL, GRAPHBAR, GRAPHPIE, GRAPHLINE, HISTOGRAM, EJEX, EJEY, TITULOX, TITULOY;
-terminal String PALABRA_I;
+terminal String PALABRA_I,GUIONREV;
 
 //------> Declaración de no terminales
 non terminal inicio;
@@ -56,6 +57,7 @@ non terminal variables;
 non terminal tipo;
 non terminal lista_arreglo;
 non terminal arrVal;
+non terminal ref_arreglo;
 
 //------> PRECEDENCIA
 
@@ -84,11 +86,18 @@ impresion ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL lista_expresion FIN PUNTOY
         }
         lista.clear(); // Limpiar la lista después de imprimir
         System.out.println(" ");
-    :};
+        System.out.println("-------------------------------------------");
+    :}
+    |CONSOLE DOSPUNTOS DOSPUNTOS COLUMN IGUAL expresion:titulog GUIONREV ref_arreglo FIN PUNTOYCOMA {:
+        System.out.println("-------"+ titulog + "-------");
+
+    :}
+;
 
 lista_expresion ::= lista_expresion COMA expresion
 	| expresion
 ;
+
 
 
 expresion ::= CADENA_F:a
@@ -192,7 +201,7 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
                             System.out.println("valor: " + variable.valoract);
                             System.out.println("tipo: " + variable.tipo);
                         }
-
+                        System.out.println("-------------------------------------------");
                     } else if (tp== "String") {
                         valor_variable nueva_var = new valor_variable(teid.toString(), "cadena", val_var.toString(), null, 0, 0, val_var.toString());
                         tabla_simbolos.add(nueva_var);
@@ -202,7 +211,7 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
                             System.out.println("valor: " + variable.valoract);
                             System.out.println("tipo: " + variable.tipo);
                         }
-
+                        System.out.println("-------------------------------------------");
 
                     } else {
                                 System.out.println("ELEGIR UN VALOR VALIDO PARA CREAR LA VARIABLE");
@@ -215,15 +224,16 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
                         valor_variable nuevo_arr = new valor_variable(teid.toString(), "double", "arreglo", arrayVar, 0, 0, "arreglo");
                         tabla_simbolos.add(nuevo_arr);
                         lista.clear();
-                        for (valor_variable variable : tabla_simbolos) {
-                            System.out.println("ID: " + nuevo_arr.id);
-                            System.out.println("tipo: " + nuevo_arr.tipo);
-                            System.out.println("VALORES" );
-                            for (Object value : nuevo_arr.valorArreglo) {
-                                System.out.println(value);
-                            }
+
+                        System.out.println("ID: " + nuevo_arr.id);
+                        System.out.println("tipo: " + nuevo_arr.tipo);
+                        System.out.println("VALORES" );
+                        for (Object value : nuevo_arr.valorArreglo) {
+                            System.out.println(value);
                         }
+
                         arrayVar.clear();
+                        System.out.println("-------------------------------------------");
 
                     } else if (tp== "String") {
                         valor_variable nuevo_arr = new valor_variable(teid.toString(), "cadena", "arreglo", arrayVar, 0, 0, "arreglo");
@@ -238,7 +248,7 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
                         }
 
                         arrayVar.clear();
-
+                        System.out.println("-------------------------------------------");
 
                     } else {
                                 System.out.println("ELEGIR UN VALOR VALIDO PARA CREAR LA VARIABLE");
@@ -283,3 +293,18 @@ arrVal ::= CADENA_F:a
                 }
            :}
 ;
+
+ref_arreglo::= ABRIRCORCHETES lista_arreglo:at CERRARCORCHETES 
+{:
+        //System.out.println("-------"+ titulog + "-------");
+        for (Object obj : arrayVar) {
+            System.out.println(obj);
+        }
+        arrayVar.clear();
+ :}
+        | ARROBA PALABRA_I:des
+{:
+
+:}
+;
+

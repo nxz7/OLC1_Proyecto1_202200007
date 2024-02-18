@@ -49,6 +49,7 @@ PALABRA_I={letra}({letra}|{letra}|[0-9]|_)+
 "var" {funciones.TokenList.addTokenToList(yyline ,yycolumn,yytext(), "VAR"); return new Symbol(sym.VAR, yycolumn, yyline, yytext()); }
 "DOUBLE" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "DOUBLE"); return new Symbol(sym.DOUBLE, yycolumn, yyline, yytext()); }
 "<-" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GUION"); return new Symbol(sym.GUION, yycolumn, yyline, yytext()); }
+"->" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "GUIONREV"); return new Symbol(sym.GUIONREV, yycolumn, yyline, yytext()); }
 
 
 "PROGRAM" {funciones.TokenList.addTokenToList(yyline , yycolumn, yytext(), "PROGRAMPAL"); return new Symbol(sym.PROGRAMPAL, yycolumn, yyline, yytext()); }

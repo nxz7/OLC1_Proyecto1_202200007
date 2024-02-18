@@ -24,13 +24,14 @@ public class Inicio {
                          + /
                          var:char[]::primero <- "prueba" end;
                          
+                         arr:DOUBLE::@carray <- [27, 2, 7 ] end;                         
                          console::print="dos",7,"jeje", primero end;?
                          <!skshkshs
                          sjsjsj!>
                          
                          var:double::segundo <- 2.5 end;
                          console::print="dospuntoCNCO",segundo end;?
-                         
+                         arr:DOUBLE::@carray <- [27, 2, segundo ] end;   
                          arr:char[]::@carray <- ["todo", "es", "nuevo" ] end;
                          
                          console::print=div(10,res(11,7)),mod(5,2),mul(segundo,2) end;
@@ -40,7 +41,7 @@ public class Inicio {
         System.out.println("-------------------------------------------------------------------------------");
         System.out.print("\"");
         
-        analizar(entrada);
+        //analizar(entrada);
         TokenList.printTokenList();
         TokenList.genHTMLTokenList();
         ErroresList.genHTMLErrorList();

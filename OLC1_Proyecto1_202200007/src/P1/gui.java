@@ -18,6 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import funciones.ErroresList;
+import funciones.TokenList;
+import java.io.StringReader;
 
 /**
  *
@@ -43,7 +46,7 @@ public class gui extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        consola = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         entrada = new javax.swing.JTabbedPane();
@@ -68,10 +71,20 @@ public class gui extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Reportes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(204, 255, 255));
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Ejecutar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -90,11 +103,11 @@ public class gui extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("CONSOLA");
 
-        jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
-        jTextArea2.setColumns(20);
-        jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        consola.setBackground(new java.awt.Color(0, 0, 0));
+        consola.setColumns(20);
+        consola.setForeground(new java.awt.Color(255, 255, 255));
+        consola.setRows(5);
+        jScrollPane2.setViewportView(consola);
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -297,7 +310,7 @@ public class gui extends javax.swing.JFrame {
         //si esta vacio la ruta
             if (path_actual.isEmpty()) {
                 JFileChooser fileChooser = new JFileChooser();
-                FileNameExtensionFilter exp = new FileNameExtensionFilter("dataforge (*.df)", "df");
+                FileNameExtensionFilter exp = new FileNameExtensionFilter("dataforge (*.df)", ".df");
                 fileChooser.addChoosableFileFilter(exp);
                 fileChooser.setFileFilter(exp);
 
@@ -330,6 +343,20 @@ public class gui extends javax.swing.JFrame {
         }
     }
 //-----------------------------------------------------------------------------------------------   
+    public static void analizar (String entrada){
+        try {
+            analizadores.Lexer lexer = new analizadores.Lexer(new StringReader(entrada));
+            TokenList.printTokenList();    
+            analizadores.Parser parser = new analizadores.Parser(lexer);
+            parser.parse();
+            System.out.println("DENTRO DE ANALIZAR:");
+            TokenList.printTokenList();
+            System.out.println("-----------------------------------");
+        } catch (Exception e) {
+            System.out.println("Error fatal en compilación de entrada.");
+            System.out.println(e);
+        } 
+    }
     
     private void Archivo_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Archivo_nuevoActionPerformed
         
@@ -389,6 +416,23 @@ public class gui extends javax.swing.JFrame {
         ruta_ar.add(archivo_seleccionado.getAbsolutePath());
         nombre_Par.add(nombrePestaOc);
     }//GEN-LAST:event_Archivo_abrirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        TokenList.printTokenList();
+        TokenList.genHTMLTokenList();
+        ErroresList.genHTMLErrorList();
+        consola.setText("---> reportes generados");
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int tabIndex = entrada.getSelectedIndex();
+        System.out.print("EJECUTANDO CODIGO -----------> ");
+
+        JTextArea textArea = ((JTextArea) ((JScrollPane) entrada.getComponentAt(tabIndex)).getViewport().getView());
+        String entrada_f = textArea.getText();
+        analizar(entrada_f);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 ///////////////////////////// abrirb arhivo - funcion //////////////
     private String leer_Abierto(File file) {
         StringBuilder codigo = new StringBuilder();
@@ -452,6 +496,7 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JMenuItem Archivo_abrir;
     private javax.swing.JMenuItem Archivo_guardar;
     private javax.swing.JMenuItem Archivo_nuevo;
+    private javax.swing.JTextArea consola;
     private javax.swing.JTabbedPane entrada;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -467,6 +512,5 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 }

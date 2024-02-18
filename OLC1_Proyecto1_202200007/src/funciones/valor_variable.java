@@ -32,4 +32,5 @@ public class valor_variable {
         this.valorst = valorst;
     }
     
+
 }
