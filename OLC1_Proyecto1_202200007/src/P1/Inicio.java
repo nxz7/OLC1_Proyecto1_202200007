@@ -4,7 +4,7 @@ package P1;
 import funciones.ErroresList;
 import funciones.TokenList;
 import java.io.StringReader;
-
+//import funciones.IdArrayHashMap;
 /**
  *
  * @author natalia
@@ -16,35 +16,52 @@ public class Inicio {
         inicioM.setVisible(true);
         //funciones.funcion.mostrar("hola");s
         
-        analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
+        //analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
         
         String entrada = """ 
-                         console::print="hola",27, SUM(7,5) end;
-                         !COMENTARIOll
-                         + /
-                         var:char[]::primero <- "prueba" end;
+                        PROGRAM
+                         	
+                         	var:double:: notaAprobar <- 61 end;
+                         	var:char[]:: labelAprobar <- "Nota Minima" end;
+                         	
+                         	! Arreglos
+                         	arr:double:: @notas <- [notaAprobar, MUL(75, 0.45), DIV(SUM(80,20), RES(75,25))] end;
+                         	arr:char[]:: @labels <- [labelAprobar, "P1", "P2"] end;
+                         	
+                         	!Prints
+                         	var:char[]:: titulo1 <- "Titulo histograma" end;
+                         	console::column = "test" -> [10, 15.5, 61.1] end;
+                         	console::column = "Notas" -> @notas end;
+                         	console::column = titulo1 -> @labels end;
+                         	
+                         	console::print = "Media", "Mediana", "Moda", "Varianza", "Max", "Min" end;
+                         	console::print = Media(@notas), Mediana(@notas), Moda(@notas), Varianza(@notas), Max(@notas), Min(@notas) end;
+                         	console::print = "Hola Mundo", MOD(10, 9), notaAprobar, labelAprobar end;
+                         	
+                         	<! FELICIDADES
+                         		Lo de arriba ya es medio proyecto
+                         		Tu puedes !>
+                         	
+                         	var:double:: gb1 <- 61 end;
+                         	var:char[]:: gbt <- "Datos" end;
+                                console::print = gbt, GB1 end;
+                         	
+                         <! En las graficas los datos se declaran directamente o por medio de variables
+                         Buena suerte
+                         Deben generar todas las graficas en una ejecucion
+                          !>
                          
-                         arr:DOUBLE::@carray <- [27, 2, 7 ] end;                         
-                         console::print="dos",7,"jeje", primero end;?
-                         <!skshkshs
-                         sjsjsj!>
-                         
-                         var:double::segundo <- 2.5 end;
-                         console::print="dospuntoCNCO",segundo end;?
-                         arr:DOUBLE::@carray <- [27, 2, segundo ] end;   
-                         arr:char[]::@carray <- ["todo", "es", "nuevo" ] end;
-                         
-                         console::print=div(10,res(11,7)),mod(5,2),mul(segundo,2) end;
+                         END PROGRAM
                          """;
         //MOSTRAR---------
         
         System.out.println("-------------------------------------------------------------------------------");
         System.out.print("\"");
         
-        //analizar(entrada);
-        TokenList.printTokenList();
-        TokenList.genHTMLTokenList();
-        ErroresList.genHTMLErrorList();
+        analizar(entrada);
+        //TokenList.printTokenList();
+        //TokenList.genHTMLTokenList();
+        //ErroresList.genHTMLErrorList();
     }
     
     public static void analizadores(String ruta, String jflexFile, String cupFile){

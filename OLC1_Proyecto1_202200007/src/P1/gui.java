@@ -310,7 +310,7 @@ public class gui extends javax.swing.JFrame {
         //si esta vacio la ruta
             if (path_actual.isEmpty()) {
                 JFileChooser fileChooser = new JFileChooser();
-                FileNameExtensionFilter exp = new FileNameExtensionFilter("dataforge (*.df)", ".df");
+                FileNameExtensionFilter exp = new FileNameExtensionFilter(".df)", ".df");
                 fileChooser.addChoosableFileFilter(exp);
                 fileChooser.setFileFilter(exp);
 
@@ -342,8 +342,8 @@ public class gui extends javax.swing.JFrame {
             e.printStackTrace(); //exceocion - >>> que no se caiga
         }
     }
-//-----------------------------------------------------------------------------------------------   
-    public static void analizar (String entrada){
+//--------------------------------arr--------------------------------------------   
+   public static void analizar (String entrada){
         try {
             analizadores.Lexer lexer = new analizadores.Lexer(new StringReader(entrada));
             TokenList.printTokenList();    

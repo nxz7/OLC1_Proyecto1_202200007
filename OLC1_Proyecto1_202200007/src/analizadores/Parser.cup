@@ -8,6 +8,10 @@ import funciones.valor;
 import java.util.ArrayList;
 import funciones.valor_variable;
 import java.lang.reflect.Array;
+import funciones.IdArrayListHashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 //------> Codigo para el parser
 //------> Declaracion de variables, funciones y funciones de error
@@ -18,6 +22,8 @@ parser code
     public ArrayList<valor> lista = new ArrayList<>();
     public ArrayList<valor_variable> tabla_simbolos = new ArrayList<>();
     public ArrayList<Object> arrayVar = new ArrayList<>();
+    public IdArrayListHashMap hashMap = new IdArrayListHashMap();
+    public IdArrayListHashMap hashVarianza = new IdArrayListHashMap();
     //public static String titulog;
     public void syntax_error(Symbol s)
     {
@@ -58,6 +64,7 @@ non terminal tipo;
 non terminal lista_arreglo;
 non terminal arrVal;
 non terminal ref_arreglo;
+non terminal estadistica_arreglo;
 
 //------> PRECEDENCIA
 
@@ -66,7 +73,7 @@ non terminal ref_arreglo;
 start with inicio;
 
 // ------------>  Producciones  <------------
-inicio ::= lista_instr
+inicio ::= PROGRAMPAL lista_instr FIN PROGRAMPAL
 ;
 
 lista_instr ::= lista_instr instruccion
@@ -82,7 +89,7 @@ instruccion ::= impresion
 impresion ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL lista_expresion FIN PUNTOYCOMA     {: 
         System.out.print("!Salida: ");
         for (valor v : lista) {
-            System.out.print("," + v.resultado);
+            System.out.print(v.resultado + "," );
         }
         lista.clear(); // Limpiar la lista después de imprimir
         System.out.println(" ");
@@ -90,7 +97,7 @@ impresion ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL lista_expresion FIN PUNTOY
     :}
     |CONSOLE DOSPUNTOS DOSPUNTOS COLUMN IGUAL expresion:titulog GUIONREV ref_arreglo FIN PUNTOYCOMA {:
         System.out.println("-------"+ titulog + "-------");
-
+        lista.clear();
     :}
 ;
 
@@ -187,6 +194,55 @@ aritmetica ::= NUMERO:val
                         double result_s = (Double) izq % (Double) der;
                         RESULT = result_s; 
             :}
+        | MEDIA ABRIRPARENTESIS estadistica_arreglo:hashnom CERRARPARENTESIS  
+           {: 
+                        ArrayList<Object> retrievedArrayS = hashVarianza.getArrayListById(hashnom.toString());
+                        hashVarianza.calculateMedian(retrievedArrayS);
+                        double total = hashVarianza.calculateMean(retrievedArrayS);
+                        System.out.println(total);
+                        RESULT = total;
+            :}
+        |  MEDIANA ABRIRPARENTESIS estadistica_arreglo:hashnom CERRARPARENTESIS  
+           {: 
+                        ArrayList<Object> retrievedArrayS =hashVarianza.getArrayListById(hashnom.toString());
+                        hashVarianza.calculateMedian(retrievedArrayS);
+                        double total = hashVarianza.calculateMedian(retrievedArrayS);
+                        System.out.println(total);
+                        RESULT = total;
+            :}
+        | MODA ABRIRPARENTESIS estadistica_arreglo:hashnom CERRARPARENTESIS  
+           {: 
+                        ArrayList<Object> retrievedArrayS =hashVarianza.getArrayListById(hashnom.toString());
+                        hashVarianza.calculateMedian(retrievedArrayS);
+                        double total = hashVarianza.calculateMode(retrievedArrayS);
+                        System.out.println(total);
+                        RESULT = total;
+            :}
+        |  VARIANZA ABRIRPARENTESIS estadistica_arreglo:hashnom CERRARPARENTESIS  
+           {: 
+                        ArrayList<Object> retrievedArrayS =hashVarianza.getArrayListById(hashnom.toString());
+                        hashVarianza.calculateMedian(retrievedArrayS);
+                        double total = hashVarianza.calculateVariance(retrievedArrayS);
+                        System.out.println(total);
+                        RESULT = total;
+            :}
+        |  MAX ABRIRPARENTESIS estadistica_arreglo:hashnom CERRARPARENTESIS  
+           {: 
+                        ArrayList<Object> retrievedArrayS =hashVarianza.getArrayListById(hashnom.toString());
+                        hashVarianza.calculateMedian(retrievedArrayS);
+                        double total = hashVarianza.calculateMax(retrievedArrayS);
+                        System.out.println(total);
+                        RESULT = total;
+            :}
+        |  MIN ABRIRPARENTESIS estadistica_arreglo:hashnom CERRARPARENTESIS  
+           {: 
+                        ArrayList<Object> retrievedArrayS =hashVarianza.getArrayListById(hashnom.toString());
+                        hashVarianza.calculateMedian(retrievedArrayS);
+                        double total = hashVarianza.calculateMin(retrievedArrayS);
+                        System.out.println(total);
+                        RESULT = total;
+            :}
+
 ;
 
 
@@ -221,8 +277,11 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
             {:           
                     System.out.println("DECLARAR ARREGLOS");
                     if (tp == "double") {
-                        valor_variable nuevo_arr = new valor_variable(teid.toString(), "double", "arreglo", arrayVar, 0, 0, "arreglo");
+                        ArrayList<Object> arrayVarToInsert = new ArrayList<>(arrayVar); 
+                        valor_variable nuevo_arr = new valor_variable(teid.toString(), "double", "arreglo", arrayVarToInsert, 0, 0, "arreglo");
                         tabla_simbolos.add(nuevo_arr);
+                        hashMap.setArrayListById(teid.toString(), arrayVarToInsert);
+                        
                         lista.clear();
 
                         System.out.println("ID: " + nuevo_arr.id);
@@ -232,12 +291,18 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
                             System.out.println(value);
                         }
 
-                        arrayVar.clear();
+                        
                         System.out.println("-------------------------------------------");
+                        ArrayList<Object> retrievedArrayVar1 = hashMap.getArrayListById(teid.toString());
+                        System.out.println("-------" + teid.toString()+"-------------");
+                        System.out.println(retrievedArrayVar1);
 
+                        arrayVar.clear();
                     } else if (tp== "String") {
-                        valor_variable nuevo_arr = new valor_variable(teid.toString(), "cadena", "arreglo", arrayVar, 0, 0, "arreglo");
+                        ArrayList<Object> arrayVarToInsert = new ArrayList<>(arrayVar); 
+                        valor_variable nuevo_arr = new valor_variable(teid.toString(), "cadena", "arreglo", arrayVarToInsert, 0, 0, "arreglo");
                         tabla_simbolos.add(nuevo_arr);
+                        hashMap.setArrayListById(teid.toString(), arrayVarToInsert);
                         lista.clear();
 
                         System.out.println("ID: " + nuevo_arr.id);
@@ -249,6 +314,10 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
 
                         arrayVar.clear();
                         System.out.println("-------------------------------------------");
+                        System.out.println("-------------------------------------------");
+                        ArrayList<Object> retrievedArrayVar1 = hashMap.getArrayListById(teid.toString());
+                        System.out.println("-------" + teid.toString()+"-------------");
+                        System.out.println(retrievedArrayVar1);
 
                     } else {
                                 System.out.println("ELEGIR UN VALOR VALIDO PARA CREAR LA VARIABLE");
@@ -296,15 +365,37 @@ arrVal ::= CADENA_F:a
 
 ref_arreglo::= ABRIRCORCHETES lista_arreglo:at CERRARCORCHETES 
 {:
-        //System.out.println("-------"+ titulog + "-------");
+        //si solo da una lista para imprimir
         for (Object obj : arrayVar) {
             System.out.println(obj);
         }
-        arrayVar.clear();
+        
  :}
         | ARROBA PALABRA_I:des
 {:
-
+        ArrayList<Object> retrievedArrayVar1 = hashMap.getArrayListById(des.toString());
+        System.out.println("-------" + des.toString() +"-------------");
+        for (Object item : retrievedArrayVar1) {
+         System.out.println(item);
+}
 :}
 ;
 
+estadistica_arreglo::= ABRIRCORCHETES lista_arreglo:at CERRARCORCHETES 
+{:
+        String prueba = "prueba";
+        ArrayList<Object> arrayVarEst = new ArrayList<>(arrayVar);
+        hashVarianza.setArrayListById(prueba, arrayVarEst);
+        arrayVar.clear();
+        RESULT = prueba;
+
+   
+ :}
+        | ARROBA PALABRA_I:des
+{:
+        ArrayList<Object> retrievedArraySr = hashMap.getArrayListById(des.toString());
+        String encontrada = des.toString();
+        hashVarianza.setArrayListById(encontrada, retrievedArraySr);
+        RESULT = encontrada;
+:}
+;
