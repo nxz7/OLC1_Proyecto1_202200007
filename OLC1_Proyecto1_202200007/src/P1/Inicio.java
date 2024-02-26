@@ -23,16 +23,17 @@ public class Inicio {
                          	
                          	var:double:: notaAprobar <- 61 end;
                          	var:char[]:: labelAprobar <- "Nota Minima" end;
-                         	
+                         	***
                          	! Arreglos
                          	arr:double:: @notas <- [notaAprobar, MUL(75, 0.45), DIV(SUM(80,20), RES(75,25))] end;
                          	arr:char[]:: @labels <- [labelAprobar, "P1", "P2"] end;
-                         	
+                         	?
                          	!Prints
                          	var:char[]:: titulo1 <- "Titulo histograma" end;
                          	console::column = "test" -> [10, 15.5, 61.1] end;
                          	console::column = "Notas" -> @notas end;
                          	console::column = titulo1 -> @labels end;
+                                console::column  "test" -> [10, 15.5, 61.1] end;
                          	
                          	console::print = "Media", "Mediana", "Moda", "Varianza", "Max", "Min" end;
                          	console::print = Media(@notas), Mediana(@notas), Moda(@notas), Varianza(@notas), Max(@notas), Min(@notas) end;
@@ -58,10 +59,10 @@ public class Inicio {
         System.out.println("-------------------------------------------------------------------------------");
         System.out.print("\"");
         
-        analizar(entrada);
+        //analizar(entrada);
         //TokenList.printTokenList();
-        //TokenList.genHTMLTokenList();
-        //ErroresList.genHTMLErrorList();
+       //TokenList.genHTMLTokenList();
+       //ErroresList.genHTMLErrorList();
     }
     
     public static void analizadores(String ruta, String jflexFile, String cupFile){
@@ -77,21 +78,21 @@ public class Inicio {
             System.out.println(e);
         }
     }
-    
+    /*
     public static void analizar (String entrada){
         try {
             analizadores.Lexer lexer = new analizadores.Lexer(new StringReader(entrada));
-            TokenList.printTokenList();    
+            //TokenList.printTokenList();    
             analizadores.Parser parser = new analizadores.Parser(lexer);
             parser.parse();
-            System.out.println("DENTRO DE ANALIZAR:");
-            TokenList.printTokenList();
+            //System.out.println("DENTRO DE ANALIZAR:");
+            //TokenList.printTokenList();
             System.out.println("-----------------------------------");
         } catch (Exception e) {
             System.out.println("Error fatal en compilación de entrada.");
             System.out.println(e);
         } 
-    }
+    }*/
     
 
         

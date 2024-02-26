@@ -15,6 +15,7 @@ import java.lang.reflect.Array;
 import funciones.IdArrayListHashMap;
 import java.util.ArrayList;
 import java.util.HashMap;
+import funciones.acumulador;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -272,7 +273,7 @@ public class Parser extends java_cup.runtime.lr_parser {
 
     public String resultado = ""; 
     public ArrayList<valor> lista = new ArrayList<>();
-    public ArrayList<valor_variable> tabla_simbolos = new ArrayList<>();
+    public static ArrayList<valor_variable> tabla_simbolos = new ArrayList<>();
     public ArrayList<Object> arrayVar = new ArrayList<>();
     public IdArrayListHashMap hashMap = new IdArrayListHashMap();
     public IdArrayListHashMap hashVarianza = new IdArrayListHashMap();
@@ -280,6 +281,7 @@ public class Parser extends java_cup.runtime.lr_parser {
     public void syntax_error(Symbol s)
     {
             System.err.println("Error Sintactico: "+ s.value + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );
+            funciones.ErroresList.addErrorToList(s.right  , s.left, s.value.toString(), "SINTACTICO");
     }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
@@ -398,12 +400,15 @@ class CUP$Parser$actions {
               Object RESULT =null;
 		 
         System.out.print("!Salida: ");
+        acumulador.addSalida("!Salida: ");
         for (valor v : lista) {
             System.out.print(v.resultado + "," );
+            acumulador.addSalida(v.resultado + "," );    
         }
         lista.clear(); // Limpiar la lista después de imprimir
         System.out.println(" ");
         System.out.println("-------------------------------------------");
+        acumulador.addToOutput("-------------------------------------------" ); 
     
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("impresion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -418,6 +423,7 @@ class CUP$Parser$actions {
 		Object titulog = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
 		
         System.out.println("-------"+ titulog + "-------");
+        acumulador.addToOutput("-------"+ titulog + "-------"); 
         lista.clear();
     
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("impresion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-9)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -507,11 +513,11 @@ class CUP$Parser$actions {
 		           
                 boolean variableExists = false;
                 for (valor_variable variable : tabla_simbolos) {
-                    if (variable.id.equals(varbuscar)) {
+                    if (variable.id.equalsIgnoreCase(varbuscar)) {
                         variableExists = true;
-                        System.out.println("variable encontrada");
+                        //System.out.println("variable encontrada");
                         if (variable.tipo.equals("cadena")) {
-                            System.out.println("es una cadena");
+                            //System.out.println("es una cadena");
                             varbuscar= variable.valoract;
                             RESULT= varbuscar;
                         } else if (variable.tipo.equals("double")) {
@@ -520,7 +526,7 @@ class CUP$Parser$actions {
                             if (variable.valoract instanceof String) {
                                 // de str a double
                                 valorDouble = Double.parseDouble((String) variable.valoract);
-                                 RESULT=valorDouble;
+                                RESULT=valorDouble;
                             } else {
                                 // otros tipos
                                 System.out.println("Unsupported data type for valoract: " + variable.valoract.getClass().getName());
@@ -531,9 +537,9 @@ class CUP$Parser$actions {
                         break; // No need to continue searching once found
                     }
                 }
-
                 if (!variableExists) {
-                    System.out.println("Variable " + varbuscar + " not found.");
+                    System.out.println("Variable " + varbuscar + " no existe en el programa.");
+                    acumulador.addToOutput("Variable " + varbuscar + " no existe en el programa."); 
                 }
 
            
@@ -642,7 +648,7 @@ class CUP$Parser$actions {
                         ArrayList<Object> retrievedArrayS = hashVarianza.getArrayListById(hashnom.toString());
                         hashVarianza.calculateMedian(retrievedArrayS);
                         double total = hashVarianza.calculateMean(retrievedArrayS);
-                        System.out.println(total);
+                        //System.out.println(total);
                         RESULT = total;
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -660,7 +666,7 @@ class CUP$Parser$actions {
                         ArrayList<Object> retrievedArrayS =hashVarianza.getArrayListById(hashnom.toString());
                         hashVarianza.calculateMedian(retrievedArrayS);
                         double total = hashVarianza.calculateMedian(retrievedArrayS);
-                        System.out.println(total);
+                        //System.out.println(total);
                         RESULT = total;
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -678,7 +684,7 @@ class CUP$Parser$actions {
                         ArrayList<Object> retrievedArrayS =hashVarianza.getArrayListById(hashnom.toString());
                         hashVarianza.calculateMedian(retrievedArrayS);
                         double total = hashVarianza.calculateMode(retrievedArrayS);
-                        System.out.println(total);
+                        //System.out.println(total);
                         RESULT = total;
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -696,7 +702,7 @@ class CUP$Parser$actions {
                         ArrayList<Object> retrievedArrayS =hashVarianza.getArrayListById(hashnom.toString());
                         hashVarianza.calculateMedian(retrievedArrayS);
                         double total = hashVarianza.calculateVariance(retrievedArrayS);
-                        System.out.println(total);
+                        //System.out.println(total);
                         RESULT = total;
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -714,7 +720,7 @@ class CUP$Parser$actions {
                         ArrayList<Object> retrievedArrayS =hashVarianza.getArrayListById(hashnom.toString());
                         hashVarianza.calculateMedian(retrievedArrayS);
                         double total = hashVarianza.calculateMax(retrievedArrayS);
-                        System.out.println(total);
+                        //System.out.println(total);
                         RESULT = total;
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -732,7 +738,7 @@ class CUP$Parser$actions {
                         ArrayList<Object> retrievedArrayS =hashVarianza.getArrayListById(hashnom.toString());
                         hashVarianza.calculateMedian(retrievedArrayS);
                         double total = hashVarianza.calculateMin(retrievedArrayS);
-                        System.out.println(total);
+                        //System.out.println(total);
                         RESULT = total;
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("aritmetica",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -754,28 +760,34 @@ class CUP$Parser$actions {
 		Object val_var = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
                     if (tp == "double") {
-                        valor_variable nueva_var = new valor_variable(teid.toString(), "double", val_var.toString(), null, 0, 0, val_var.toString());
+                        valor_variable nueva_var = new valor_variable(teid.toString(), "double", val_var.toString(), null,  0,  0, val_var.toString());
                         tabla_simbolos.add(nueva_var);
                         lista.clear();
+                        /*
                         for (valor_variable variable : tabla_simbolos) {
                             System.out.println("ID: " + variable.id);
                             System.out.println("valor: " + variable.valoract);
                             System.out.println("tipo: " + variable.tipo);
-                        }
+                        }*/
+
                         System.out.println("-------------------------------------------");
                     } else if (tp== "String") {
                         valor_variable nueva_var = new valor_variable(teid.toString(), "cadena", val_var.toString(), null, 0, 0, val_var.toString());
                         tabla_simbolos.add(nueva_var);
                         lista.clear();
+
+                        /*
                         for (valor_variable variable : tabla_simbolos) {
                             System.out.println("ID: " + variable.id);
                             System.out.println("valor: " + variable.valoract);
                             System.out.println("tipo: " + variable.tipo);
-                        }
+                        }*/
+
                         System.out.println("-------------------------------------------");
 
                     } else {
                                 System.out.println("ELEGIR UN VALOR VALIDO PARA CREAR LA VARIABLE");
+
                     }
             
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("variables",7, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-9)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -796,15 +808,15 @@ class CUP$Parser$actions {
 		int atright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)).right;
 		Object at = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-3)).value;
 		           
-                    System.out.println("DECLARAR ARREGLOS");
+                    //System.out.println("DECLARAR ARREGLOS");
                     if (tp == "double") {
                         ArrayList<Object> arrayVarToInsert = new ArrayList<>(arrayVar); 
-                        valor_variable nuevo_arr = new valor_variable(teid.toString(), "double", "arreglo", arrayVarToInsert, 0, 0, "arreglo");
+                        valor_variable nuevo_arr = new valor_variable(teid.toString(), "double", "arreglo", arrayVarToInsert,  0,  0, "arreglo");
                         tabla_simbolos.add(nuevo_arr);
                         hashMap.setArrayListById(teid.toString(), arrayVarToInsert);
                         
                         lista.clear();
-
+                         /*   
                         System.out.println("ID: " + nuevo_arr.id);
                         System.out.println("tipo: " + nuevo_arr.tipo);
                         System.out.println("VALORES" );
@@ -817,8 +829,9 @@ class CUP$Parser$actions {
                         ArrayList<Object> retrievedArrayVar1 = hashMap.getArrayListById(teid.toString());
                         System.out.println("-------" + teid.toString()+"-------------");
                         System.out.println(retrievedArrayVar1);
-
+                        */
                         arrayVar.clear();
+
                     } else if (tp== "String") {
                         ArrayList<Object> arrayVarToInsert = new ArrayList<>(arrayVar); 
                         valor_variable nuevo_arr = new valor_variable(teid.toString(), "cadena", "arreglo", arrayVarToInsert, 0, 0, "arreglo");
@@ -826,19 +839,22 @@ class CUP$Parser$actions {
                         hashMap.setArrayListById(teid.toString(), arrayVarToInsert);
                         lista.clear();
 
+                        /*
                         System.out.println("ID: " + nuevo_arr.id);
                         System.out.println("tipo: " + nuevo_arr.tipo);
                         System.out.println("VALORES" );
                         for (Object value : nuevo_arr.valorArreglo) {
                             System.out.println(value);
-                        }
+                        }*/
 
                         arrayVar.clear();
+
+                        /*
                         System.out.println("-------------------------------------------");
                         System.out.println("-------------------------------------------");
                         ArrayList<Object> retrievedArrayVar1 = hashMap.getArrayListById(teid.toString());
                         System.out.println("-------" + teid.toString()+"-------------");
-                        System.out.println(retrievedArrayVar1);
+                        System.out.println(retrievedArrayVar1);*/
 
                     } else {
                                 System.out.println("ELEGIR UN VALOR VALIDO PARA CREAR LA VARIABLE");
@@ -942,6 +958,7 @@ class CUP$Parser$actions {
         //si solo da una lista para imprimir
         for (Object obj : arrayVar) {
             System.out.println(obj);
+            acumulador.addToOutput(obj.toString()); 
         }
         
  
@@ -959,8 +976,10 @@ class CUP$Parser$actions {
 		
         ArrayList<Object> retrievedArrayVar1 = hashMap.getArrayListById(des.toString());
         System.out.println("-------" + des.toString() +"-------------");
+        acumulador.addToOutput("-------" + des.toString() +"-------------"); 
         for (Object item : retrievedArrayVar1) {
          System.out.println(item);
+         acumulador.addToOutput(item.toString()); 
 }
 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("ref_arreglo",11, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);

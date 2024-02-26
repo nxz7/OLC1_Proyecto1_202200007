@@ -21,6 +21,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import funciones.ErroresList;
 import funciones.TokenList;
 import java.io.StringReader;
+import analizadores.Parser;
+import funciones.valor_variable;
+import funciones.acumulador;
+import analizadores.Parser;
 
 /**
  *
@@ -29,10 +33,15 @@ import java.io.StringReader;
 public class gui extends javax.swing.JFrame {
 
     private int pesta_cuenta = 0;
+    ArrayList<valor_variable> tabla_simbolosG = analizadores.Parser.tabla_simbolos;
+    
 
     
     public gui() {
         initComponents();
+        //ArrayList<valor_variable> tabla_simbolosG = analizadores.Parser.tabla_simbolos;
+    //System.out.println("Accumulated Text:");
+    //System.out.println(accumulatedText);
     }
 
     @SuppressWarnings("unchecked")
@@ -342,20 +351,69 @@ public class gui extends javax.swing.JFrame {
             e.printStackTrace(); //exceocion - >>> que no se caiga
         }
     }
-//--------------------------------arr--------------------------------------------   
+//--------------------------------arr-------------------------------------------- 
+    
    public static void analizar (String entrada){
         try {
             analizadores.Lexer lexer = new analizadores.Lexer(new StringReader(entrada));
-            TokenList.printTokenList();    
+            //TokenList.printTokenList();    
             analizadores.Parser parser = new analizadores.Parser(lexer);
             parser.parse();
-            System.out.println("DENTRO DE ANALIZAR:");
-            TokenList.printTokenList();
+            //System.out.println("DENTRO DE ANALIZAR:");
+            //TokenList.printTokenList();
             System.out.println("-----------------------------------");
         } catch (Exception e) {
             System.out.println("Error fatal en compilación de entrada.");
             System.out.println(e);
         } 
+    }
+   
+   // ------------------------tabla de simbolos ---------------------
+    public static void generateHTMLTable(ArrayList<valor_variable> tabla_simbolos) {
+        StringBuilder htmlContent = new StringBuilder();
+
+        // HTMÑ
+        htmlContent.append("<html><head><style>")
+                   .append("table { border-collapse: collapse; width: 100%; }")
+                   .append("th, td { text-align: left; padding: 8px; }")
+                   .append("th { background-color: #f2f2f2; }")
+                   .append("</style></head><body>")
+                   .append("<table><tr><th>Count of Items</th><th>ID</th><th>Tipo</th>")
+                   .append("<th>Valor Act</th><th>Fila</th><th>Columna</th></tr>");
+
+         int rowCount = 1;
+        // LAS FILAS
+        for (valor_variable variable : tabla_simbolos) {
+            htmlContent.append("<tr>")
+                       .append("<td>").append(rowCount++).append("</td>")
+                       .append("<td>").append(variable.id).append("</td>")
+                       .append("<td>").append(variable.tipo).append("</td>")
+                       .append("<td>");
+
+            if (variable.valoract.equals("arreglo")) {
+                htmlContent.append(variable.valorArreglo);
+            } else {
+                htmlContent.append(variable.valoract);
+            }
+
+            htmlContent.append("</td>")
+                       .append("<td>").append(variable.fila).append("</td>")
+                       .append("<td>").append(variable.columna).append("</td>")
+                       .append("</tr>");
+        }
+
+        // HTML table end
+        htmlContent.append("</table></body></html>");
+
+        // Writing to HTML file
+        try {
+            FileWriter writer = new FileWriter("Tabla_simbolos.html");
+            writer.write(htmlContent.toString());
+            writer.close();
+            System.out.println("HTML file generated successfully.");
+        } catch (IOException e) {
+            System.err.println("Error writing HTML file: " + e.getMessage());
+        }
     }
     
     private void Archivo_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Archivo_nuevoActionPerformed
@@ -418,10 +476,12 @@ public class gui extends javax.swing.JFrame {
     }//GEN-LAST:event_Archivo_abrirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TokenList.printTokenList();
+        //TokenList.printTokenList();
         TokenList.genHTMLTokenList();
         ErroresList.genHTMLErrorList();
-        consola.setText("---> reportes generados");
+        consola.setText("---> Generando reportes");
+        generateHTMLTable(tabla_simbolosG);
+        consola.setText("listo! --------------> reportes generados");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -431,6 +491,10 @@ public class gui extends javax.swing.JFrame {
         JTextArea textArea = ((JTextArea) ((JScrollPane) entrada.getComponentAt(tabIndex)).getViewport().getView());
         String entrada_f = textArea.getText();
         analizar(entrada_f);
+        String accumulatedText = acumulador.getOutputText();
+        consola.setText(accumulatedText);
+        System.out.println("texto");
+        System.out.println(accumulatedText);
         
     }//GEN-LAST:event_jButton2ActionPerformed
 ///////////////////////////// abrirb arhivo - funcion //////////////
