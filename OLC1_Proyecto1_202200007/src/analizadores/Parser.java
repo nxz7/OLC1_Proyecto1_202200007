@@ -423,7 +423,9 @@ class CUP$Parser$actions {
 		Object titulog = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-4)).value;
 		
         System.out.println("-------"+ titulog + "-------");
-        acumulador.addToOutput("-------"+ titulog + "-------"); 
+        acumulador.addToOutput("------------------------------" );
+        acumulador.addToOutput("        "+ titulog + "        ");
+        acumulador.addToOutput("------------------------------" );
         lista.clear();
     
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("impresion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-9)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
@@ -955,6 +957,7 @@ class CUP$Parser$actions {
 		int atright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		Object at = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
+        acumulador.addToOutput("--------------------"); 
         //si solo da una lista para imprimir
         for (Object obj : arrayVar) {
             System.out.println(obj);
@@ -976,7 +979,7 @@ class CUP$Parser$actions {
 		
         ArrayList<Object> retrievedArrayVar1 = hashMap.getArrayListById(des.toString());
         System.out.println("-------" + des.toString() +"-------------");
-        acumulador.addToOutput("-------" + des.toString() +"-------------"); 
+        acumulador.addToOutput("--------------------"); 
         for (Object item : retrievedArrayVar1) {
          System.out.println(item);
          acumulador.addToOutput(item.toString()); 

@@ -3,7 +3,10 @@ package P1;
 
 import funciones.ErroresList;
 import funciones.TokenList;
+import funciones.graficos;
+import java.awt.Color;
 import java.io.StringReader;
+import java.util.List;
 //import funciones.IdArrayHashMap;
 /**
  *
@@ -33,7 +36,7 @@ public class Inicio {
                          	console::column = "test" -> [10, 15.5, 61.1] end;
                          	console::column = "Notas" -> @notas end;
                          	console::column = titulo1 -> @labels end;
-                                console::column  "test" -> [10, 15.5, 61.1] end;
+                                console::column  "test" -> [10, 45, 27] end;
                          	
                          	console::print = "Media", "Mediana", "Moda", "Varianza", "Max", "Min" end;
                          	console::print = Media(@notas), Mediana(@notas), Moda(@notas), Varianza(@notas), Max(@notas), Min(@notas) end;
@@ -63,6 +66,28 @@ public class Inicio {
         //TokenList.printTokenList();
        //TokenList.genHTMLTokenList();
        //ErroresList.genHTMLErrorList();
+       
+        //graficos graphGenerator = new graficos("Graphs");
+
+        //barra
+        List<Object> barEjex = List.of("1 parcial", "2 parcial", "final");
+        List<Object> barEjey = List.of(50.0, 30.0, 70.0);
+        graficos.createBarGraph("ESTUDIANTES", "ACTIVIDADES", "NOTA", barEjex, barEjey, Color.BLUE);
+
+        // Pie 
+        List<Object> pieLabels = List.of("UNO", "DOS", "TRES");
+        List<Object> pieValues = List.of(50.0, 30.0, 20.0);
+        graficos.createPieGraph("Pie Chart Example", pieLabels, pieValues, Color.GRAY);
+
+        // Line graph
+        List<Object> lineEjex = List.of("1 parcial", "2 parcial", "final");
+        List<Object> lineEjey = List.of(50.0,30.0,70.0);
+        graficos.createLineGraph("grafica de linea", "actividades", "notas", lineEjex, lineEjey, Color.BLUE);
+
+        // Histogram
+        List<Object> histogramValores = List.of(2.0,2.0,2.0,7.0,8.0,5.0,5.0);
+        graficos.createHistogram("Histogram Example", histogramValores, Color.RED);
+       
     }
     
     public static void analizadores(String ruta, String jflexFile, String cupFile){
