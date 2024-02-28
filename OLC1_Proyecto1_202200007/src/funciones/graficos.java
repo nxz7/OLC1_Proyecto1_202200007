@@ -117,16 +117,16 @@ public class graficos extends JFrame {
     private static void printFrequencyTable(Map<Object, Long> frequencyMap, int total) {
         DecimalFormat df = new DecimalFormat("#.##%");
         long cumulativeFrequency = 0;
-        System.out.println("Value\t| Frequency\t| Cumulative Frequency\t| Relative Frequency");
-        //acumulador.addToOutput("Value\t| Frequency\t| Cumulative Frequency\t| Relative Frequency" );
+        System.out.println("Valor\t| Frecuencia\t| Fecuencia Acumulada\t| Frecuencia relativa");
+        acumulador.addToOutput("Valor\t| Frecuencia\t| Fecuencia Acumulada\t| Frecuencia relativa" );
         System.out.println("-----------------------------------------------------------------");
-        //acumulador.addToOutput("-----------------------------------------------------------------");
+        acumulador.addToOutput("-----------------------------------------------------------------");
         for (Map.Entry<Object, Long> entry : frequencyMap.entrySet()) {
             cumulativeFrequency += entry.getValue();
             double relativeFrequency = (double) entry.getValue() / total;
             double finalRel = relativeFrequency*100;
             System.out.println(entry.getKey() + "\t| " + entry.getValue() + "\t\t| " + cumulativeFrequency + "\t\t\t\t| " + finalRel);
-            //acumulador.addToOutput(entry.getKey() + "\t| " + entry.getValue() + "\t\t| " + cumulativeFrequency + "\t\t\t\t| " + finalRel);
+            acumulador.addToOutput(entry.getKey() + "\t| " + entry.getValue() + "\t| " + cumulativeFrequency + "\t\t| " + finalRel);
             
         }
     }
@@ -139,6 +139,7 @@ public class graficos extends JFrame {
         frame.setLayout(new BorderLayout());
         frame.add(chartPanel, BorderLayout.CENTER);
         frame.pack();
+        frame.setSize(600, 450);
         frame.setVisible(true);
     }
     

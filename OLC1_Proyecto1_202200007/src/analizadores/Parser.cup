@@ -12,7 +12,10 @@ import funciones.IdArrayListHashMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import funciones.acumulador;
-
+import funciones.graficos;
+import java.awt.Color;
+import java.io.StringReader;
+import java.util.List;
 
 //------> Codigo para el parser
 //------> Declaracion de variables, funciones y funciones de error
@@ -23,8 +26,16 @@ parser code
     public ArrayList<valor> lista = new ArrayList<>();
     public static ArrayList<valor_variable> tabla_simbolos = new ArrayList<>();
     public ArrayList<Object> arrayVar = new ArrayList<>();
+
+    public ArrayList<Object> arrayGraf = new ArrayList<>();
+
     public IdArrayListHashMap hashMap = new IdArrayListHashMap();
     public IdArrayListHashMap hashVarianza = new IdArrayListHashMap();
+    public IdArrayListHashMap hashgrafico= new IdArrayListHashMap();
+    public String titulo_strg;
+    public static String titulo_final;
+    public static String nombre_arList = "nada";
+
     //public static String titulog;
     public void syntax_error(Symbol s)
     {
@@ -67,6 +78,10 @@ non terminal lista_arreglo;
 non terminal arrVal;
 non terminal ref_arreglo;
 non terminal estadistica_arreglo;
+non terminal graficos_inst;
+non terminal datos_histograma;
+non terminal titulo_str;
+non terminal instr_grafo;
 
 //------> PRECEDENCIA
 
@@ -84,6 +99,7 @@ lista_instr ::= lista_instr instruccion
 
 instruccion ::= impresion
     | variables
+    | graficos_inst
     | error PUNTOYCOMA
     | error FIN PUNTOYCOMA 
 ;
@@ -106,6 +122,9 @@ impresion ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL lista_expresion FIN PUNTOY
         acumulador.addToOutput("        "+ titulog + "        ");
         acumulador.addToOutput("------------------------------" );
         lista.clear();
+//arrayvar.clear prueba
+        arrayVar.clear();
+        nombre_arList = "nada";
     :}
 ;
 
@@ -268,6 +287,7 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
                         }*/
 
                         System.out.println("-------------------------------------------");
+                        nombre_arList = "nada";
                     } else if (tp== "String") {
                         valor_variable nueva_var = new valor_variable(teid.toString(), "cadena", val_var.toString(), null, 0, 0, val_var.toString());
                         tabla_simbolos.add(nueva_var);
@@ -281,9 +301,10 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
                         }*/
 
                         System.out.println("-------------------------------------------");
-
+                        nombre_arList = "nada";
                     } else {
                                 System.out.println("ELEGIR UN VALOR VALIDO PARA CREAR LA VARIABLE");
+                                nombre_arList = "nada";
 
                     }
             :}
@@ -312,14 +333,14 @@ variables::= VAR DOSPUNTOS tipo:tp DOSPUNTOS DOSPUNTOS PALABRA_I:teid GUION expr
                         System.out.println(retrievedArrayVar1);
                         */
                         arrayVar.clear();
-
+                        nombre_arList = "nada";
                     } else if (tp== "String") {
                         ArrayList<Object> arrayVarToInsert = new ArrayList<>(arrayVar); 
                         valor_variable nuevo_arr = new valor_variable(teid.toString(), "cadena", "arreglo", arrayVarToInsert, 0, 0, "arreglo");
                         tabla_simbolos.add(nuevo_arr);
                         hashMap.setArrayListById(teid.toString(), arrayVarToInsert);
                         lista.clear();
-
+                        nombre_arList = "nada";
                         /*
                         System.out.println("ID: " + nuevo_arr.id);
                         System.out.println("tipo: " + nuevo_arr.tipo);
@@ -393,13 +414,15 @@ ref_arreglo::= ABRIRCORCHETES lista_arreglo:at CERRARCORCHETES
  :}
         | ARROBA PALABRA_I:des
 {:
+         nombre_arList = des.toString();
         ArrayList<Object> retrievedArrayVar1 = hashMap.getArrayListById(des.toString());
         System.out.println("-------" + des.toString() +"-------------");
         acumulador.addToOutput("--------------------"); 
         for (Object item : retrievedArrayVar1) {
          System.out.println(item);
          acumulador.addToOutput(item.toString()); 
-}
+        }
+        RESULT = nombre_arList;
 :}
 ;
 
@@ -407,6 +430,7 @@ estadistica_arreglo::= ABRIRCORCHETES lista_arreglo:at CERRARCORCHETES
 {:
         String prueba = "prueba";
         ArrayList<Object> arrayVarEst = new ArrayList<>(arrayVar);
+        
         hashVarianza.setArrayListById(prueba, arrayVarEst);
         arrayVar.clear();
         RESULT = prueba;
@@ -415,9 +439,90 @@ estadistica_arreglo::= ABRIRCORCHETES lista_arreglo:at CERRARCORCHETES
  :}
         | ARROBA PALABRA_I:des
 {:
+        //nombre_arList = des.toString();
         ArrayList<Object> retrievedArraySr = hashMap.getArrayListById(des.toString());
         String encontrada = des.toString();
         hashVarianza.setArrayListById(encontrada, retrievedArraySr);
         RESULT = encontrada;
 :}
 ;
+
+graficos_inst ::= HISTOGRAM ABRIRPARENTESIS instr_grafo EXEC HISTOGRAM FIN PUNTOYCOMA CERRARPARENTESIS FIN PUNTOYCOMA
+{:          //System.out.println("ULTIMO");
+            //System.out.println(arrayGraf);
+             ArrayList<Object> barras = new ArrayList<>(arrayGraf); 
+            //ArrayList<Object> barras = hashgrafico.getArrayListById(titulo_final.toString());
+            graficos.createHistogram(titulo_final.toString(), barras, Color.RED);
+            acumulador.addToOutput("----> HISTOGRAMA CREADO CORRECTAMENTE" );
+            arrayGraf.clear();
+            //System.out.println(barras);
+    
+:};
+
+
+instr_grafo ::= instr_grafo datos_histograma
+    | datos_histograma
+;
+
+datos_histograma ::= TITULO DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL titulo_str:titulo_g FIN PUNTOYCOMA
+{:
+    titulo_final = titulo_g.toString();
+    System.out.println("TITULO");
+    RESULT = titulo_final;
+
+
+:}
+        | VALUES DOSPUNTOS DOSPUNTOS DOUBLE IGUAL ref_arreglo:tr FIN PUNTOYCOMA
+{:
+            if (!nombre_arList.equals("nada")) {
+                //System.out.println("ARREGLO ARROBA 1");
+                ArrayList<Object> arrayGrafico = hashMap.getArrayListById(nombre_arList.toString());
+                arrayGraf.addAll(arrayGrafico);
+                //System.out.println("ARREGLO ARROBA 1"); 
+            } else {
+                //System.out.println("ARREGLO ARROBA 2");
+                acumulador.addToOutput("^^^^^^ ARRIBA INF A GRAFICAR ^^^^^^^");
+                ArrayList<Object> arrayGrafico = new ArrayList<>(arrayVar);
+                arrayGraf.addAll(arrayGrafico);
+                arrayVar.clear();
+                //System.out.println(arrayGraf);
+
+            }
+            //RESULT= array_grafico;
+  
+:}        
+;
+
+
+titulo_str ::= CADENA_F:c
+{:
+                String titulo_strg= c;
+                System.out.println("titulo histograma: " + c );
+                RESULT =titulo_strg;
+:}
+            | PALABRA_I:dest
+{:
+                boolean variableExists = false;
+                for (valor_variable variable : tabla_simbolos) {
+                    if (variable.id.equalsIgnoreCase(dest)) {
+                        variableExists = true;
+                        //System.out.println("variable encontrada");
+                        if (variable.tipo.equals("cadena")) {
+                            //System.out.println("es una cadena");
+                            dest= variable.valoract;
+                            System.out.println("titulo histograma: " + dest );
+                            String titulo_strg= dest;
+                            RESULT =titulo_strg;
+                        } else if (variable.tipo.equals("double")) {
+                            System.out.println("LA VARIABLE " + dest + "NO ES DE TIPO CHAR -INGRESAR UNA VALIDA.");
+                            acumulador.addToOutput("LA VARIABLE " + dest + "NO ES DE TIPO CHAR -INGRESAR UNA VALIDA."); 
+                        }
+                        //RESULT = dest;
+                        break; // No need to continue searching once found
+                    }
+                }
+                if (!variableExists) {
+                    System.out.println("Variable " + dest + " no existe en el programa.");
+                    acumulador.addToOutput("Variable " + dest + " no existe en el programa."); 
+                }
+:};
