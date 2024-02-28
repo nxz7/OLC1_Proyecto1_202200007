@@ -18,36 +18,72 @@ public class Inicio {
         gui inicioM = new gui();
         inicioM.setVisible(true);
         //funciones.funcion.mostrar("hola");s
-        
-        //analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
+        //aaaaaaa
+        analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
         
         String entrada = """ 
-                        PROGRAM
-
-                         	!Prints
-                         	var:char[]:: titulo1 <- "Titulo histograma prueba" end;
-                                arr:double:: @notas <- [7, MUL(75, 0.45), DIV(SUM(80,20), RES(75,25))] end;
+PROGRAM
+                        	! Variables
+                        	var:double:: notaAprobar <- 70 end;
+                        	var:char[]:: labelAprobar <- "P1" end;
+                        	
+                        	! Arreglos
+                        	arr:double:: @notas <- [61, 80, 70] end;
+                        	arr:char[]:: @labels <- ["p1", "P2", "FINAL"] end;
+                                var:char[]:: titulo1 <- "Titulo histograma" end;
+                               console::column = "test" -> [10, 15.5, 61.1] end;
+                               console::column = "Notas" -> @notas end;
+                                console::column = titulo1 -> @labels end;
+                                	
+                                console::print = "Media", "Mediana", "Moda", "Varianza", "Max", "Min" end;
+                                console::print = Media(@notas), Mediana(@notas), Moda(@notas), Varianza(@notas), Max(@notas), Min(@notas) end;
+                                console::print = "Hola Mundo", MOD(10, 9), notaAprobar, labelAprobar end;
                          
-                         	Histogram(
-                         		
-                         		values::double = [2,2,2,5,5,7,8] end;
+                         
+                                graphLine(
+                                	!testing de variables en graficas
+                                	titulo::char[] = "titulo lines" end;
+                         		ejeX::char[] = @labels end;
+                         		ejeY::double = [50,30,70] end;
+                                	tituloX::char[] = "actividades" end;
+                                	tituloY::char[] = "tituloy" end;
+                                		EXEC graphLine end;
+                                	) end;
+                         
+                                graphPie(
+                                		<! FELICIDADES
+                                		La de pie es facil !>
+                                	
+                                label::char[] = ["UNO", "DOS", "TRES" ] end;
+                                titulo::char[] = "PIE PIE PIE" end;
+                                values::double = @notas end;
+                                	EXEC graphPie end;
+                                	) end;
+                         
+                                Histogram(
+                                        values::double = [2,2,2,5,5,7,8] end;
                                         titulo::char[] = titulo1 end;
-                         		EXEC Histogram end;
-                         	) end;
-                         
-                         	Histogram(
-                                        titulo::char[] = "EL SEGUNDO" end;          		
-                                        values::double = @notas end;
-                                        
                                         EXEC Histogram end;
-                                 ) end;
-                                                  
-                         END PROGRAM
+                                    ) end;
+                                                                          
+                                	
+
+                        	
+                        	
+                        <! En las graficas los datos se declaran directamente o por medio de variables
+                        Buena suerte
+                        Deben generar todas las graficas en una ejecucion
+                         !>
+                        
+                        END PROGRAM
                          """;
         //MOSTRAR---------
         
         System.out.println("-------------------------------------------------------------------------------");
         System.out.print("\"");
+        List<Object> lineEjex = List.of("1 parcial", "2 parcial", "final");
+        List<Object> lineEjey = List.of(50.0,30.0,70.0);
+        //graficos.createLineGraph("grafica de linea", "actividades", "notas", lineEjex, lineEjey, Color.BLUE);
         
         //analizar(entrada);
         //TokenList.printTokenList();

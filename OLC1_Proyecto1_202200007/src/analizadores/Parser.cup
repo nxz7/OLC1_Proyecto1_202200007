@@ -26,15 +26,28 @@ parser code
     public ArrayList<valor> lista = new ArrayList<>();
     public static ArrayList<valor_variable> tabla_simbolos = new ArrayList<>();
     public ArrayList<Object> arrayVar = new ArrayList<>();
+    public ArrayList<Object> variable_g = new ArrayList<>();
+
 
     public ArrayList<Object> arrayGraf = new ArrayList<>();
+
+    public ArrayList<Object> valoresPie = new ArrayList<>();
+    public ArrayList<Object> labelPie = new ArrayList<>();
+
+    public ArrayList<Object> eje_x = new ArrayList<>();
+    public ArrayList<Object> eje_y = new ArrayList<>();
 
     public IdArrayListHashMap hashMap = new IdArrayListHashMap();
     public IdArrayListHashMap hashVarianza = new IdArrayListHashMap();
     public IdArrayListHashMap hashgrafico= new IdArrayListHashMap();
     public String titulo_strg;
     public static String titulo_final;
+    public static String titulo_pie;
     public static String nombre_arList = "nada";
+
+    public static String titulo_line;
+    public static String titulox_line;
+    public static String tituloy_line;
 
     //public static String titulog;
     public void syntax_error(Symbol s)
@@ -82,6 +95,13 @@ non terminal graficos_inst;
 non terminal datos_histograma;
 non terminal titulo_str;
 non terminal instr_grafo;
+non terminal grafo_arreglo;
+non terminal arrValgraf;
+non terminal ref_grafoarr;
+non terminal datos_pie;
+non terminal instr_pie;
+non terminal datos_line;
+non terminal instr_line;
 
 //------> PRECEDENCIA
 
@@ -447,18 +467,127 @@ estadistica_arreglo::= ABRIRCORCHETES lista_arreglo:at CERRARCORCHETES
 :}
 ;
 
+
+
+
 graficos_inst ::= HISTOGRAM ABRIRPARENTESIS instr_grafo EXEC HISTOGRAM FIN PUNTOYCOMA CERRARPARENTESIS FIN PUNTOYCOMA
-{:          //System.out.println("ULTIMO");
-            //System.out.println(arrayGraf);
-             ArrayList<Object> barras = new ArrayList<>(arrayGraf); 
-            //ArrayList<Object> barras = hashgrafico.getArrayListById(titulo_final.toString());
-            graficos.createHistogram(titulo_final.toString(), barras, Color.RED);
+{:         
+            graficos.createHistogram(titulo_final.toString(), arrayGraf, Color.RED);
             acumulador.addToOutput("----> HISTOGRAMA CREADO CORRECTAMENTE" );
             arrayGraf.clear();
-            //System.out.println(barras);
+            acumulador.addToOutput("-------------> HISTOGRAMA CREADO ");
     
-:};
+:}| GRAPHPIE ABRIRPARENTESIS instr_pie EXEC GRAPHPIE FIN PUNTOYCOMA CERRARPARENTESIS FIN PUNTOYCOMA 
+{:
+        graficos.createPieGraph(titulo_pie.toString(), labelPie, valoresPie, Color.GRAY);
+        labelPie.clear();
+        valoresPie.clear();
+        acumulador.addToOutput("-------------> PIE PIE PIE!");
 
+:} | GRAPHLINE ABRIRPARENTESIS instr_line EXEC GRAPHLINE FIN PUNTOYCOMA CERRARPARENTESIS FIN PUNTOYCOMA 
+{:
+
+        graficos.createLineGraph(titulo_line, titulox_line, tituloy_line, eje_x, eje_y, Color.BLUE);
+        acumulador.addToOutput("-------------> GRAFICA LINEA CREADA");
+        eje_x.clear();
+        eje_y.clear();
+:}
+;
+
+
+
+instr_line ::= instr_line datos_line
+    | datos_line
+;
+
+datos_line::= TITULO DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL titulo_str:titulo_g FIN PUNTOYCOMA
+{:
+    titulo_line = titulo_g.toString();
+    RESULT = titulo_line ;
+:} |  TITULOX DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL titulo_str:titulo_g FIN PUNTOYCOMA
+{:
+    titulox_line = titulo_g.toString();
+    RESULT = titulox_line;
+
+:}
+|  TITULOY DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL titulo_str:titulo_g FIN PUNTOYCOMA
+{:
+    tituloy_line = titulo_g.toString();
+    RESULT = tituloy_line;
+
+:}
+| EJEY DOSPUNTOS DOSPUNTOS DOUBLE IGUAL ref_grafoarr:tr FIN PUNTOYCOMA
+{:
+            if (!nombre_arList.equals("nada")) {
+                ArrayList<Object> array_line = hashMap.getArrayListById(nombre_arList.toString());
+                eje_y.addAll(array_line);
+                variable_g.clear();
+                nombre_arList = "nada";
+            } else {
+                ArrayList<Object> array_line = new ArrayList<>(variable_g);
+                eje_y.addAll(array_line);
+                variable_g.clear();
+            }
+:}       
+ | EJEX DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL ref_grafoarr:tr FIN PUNTOYCOMA
+{:
+            if (!nombre_arList.equals("nada")) {
+                ArrayList<Object> array_line_str = hashMap.getArrayListById(nombre_arList.toString());
+                eje_x.addAll(array_line_str);
+                variable_g.clear();
+                nombre_arList = "nada";
+            } else {
+                ArrayList<Object> array_line_str = new ArrayList<>(variable_g);
+                eje_x.addAll(array_line_str);
+                variable_g.clear();
+            }
+:}
+            
+;
+
+
+
+
+
+
+
+instr_pie ::= instr_pie datos_pie
+    | datos_pie
+;
+
+datos_pie ::= TITULO DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL titulo_str:titulo_g FIN PUNTOYCOMA
+{:
+    titulo_pie = titulo_g.toString();
+    System.out.println("TITULO");
+    RESULT = titulo_pie ;
+:}
+        | VALUES DOSPUNTOS DOSPUNTOS DOUBLE IGUAL ref_grafoarr:tr FIN PUNTOYCOMA
+{:
+            if (!nombre_arList.equals("nada")) {
+                ArrayList<Object> array_Pie = hashMap.getArrayListById(nombre_arList.toString());
+                valoresPie.addAll(array_Pie);
+                variable_g.clear();
+                nombre_arList = "nada";
+            } else {
+                ArrayList<Object> array_Pie = new ArrayList<>(variable_g);
+                valoresPie.addAll(array_Pie);
+                variable_g.clear();
+            }
+:}        | LABEL DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL ref_grafoarr:tr FIN PUNTOYCOMA
+{:
+            if (!nombre_arList.equals("nada")) {
+                ArrayList<Object> array_Pie_str = hashMap.getArrayListById(nombre_arList.toString());
+                labelPie.addAll(array_Pie_str);
+                variable_g.clear();
+                nombre_arList = "nada";
+            } else {
+                ArrayList<Object> array_Pie_str = new ArrayList<>(variable_g);
+                labelPie.addAll(array_Pie_str);
+                variable_g.clear();
+            }
+:}
+
+;
 
 instr_grafo ::= instr_grafo datos_histograma
     | datos_histograma
@@ -472,26 +601,22 @@ datos_histograma ::= TITULO DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRAR
 
 
 :}
-        | VALUES DOSPUNTOS DOSPUNTOS DOUBLE IGUAL ref_arreglo:tr FIN PUNTOYCOMA
+        | VALUES DOSPUNTOS DOSPUNTOS DOUBLE IGUAL ref_grafoarr:tr FIN PUNTOYCOMA
 {:
             if (!nombre_arList.equals("nada")) {
-                //System.out.println("ARREGLO ARROBA 1");
                 ArrayList<Object> arrayGrafico = hashMap.getArrayListById(nombre_arList.toString());
                 arrayGraf.addAll(arrayGrafico);
-                //System.out.println("ARREGLO ARROBA 1"); 
+                variable_g.clear();
+                nombre_arList = "nada";
             } else {
-                //System.out.println("ARREGLO ARROBA 2");
-                acumulador.addToOutput("^^^^^^ ARRIBA INF A GRAFICAR ^^^^^^^");
-                ArrayList<Object> arrayGrafico = new ArrayList<>(arrayVar);
+                ArrayList<Object> arrayGrafico = new ArrayList<>(variable_g);
                 arrayGraf.addAll(arrayGrafico);
-                arrayVar.clear();
-                //System.out.println(arrayGraf);
-
+                variable_g.clear();
             }
-            //RESULT= array_grafico;
   
 :}        
 ;
+
 
 
 titulo_str ::= CADENA_F:c
@@ -526,3 +651,48 @@ titulo_str ::= CADENA_F:c
                     acumulador.addToOutput("Variable " + dest + " no existe en el programa."); 
                 }
 :};
+
+
+
+grafo_arreglo::= grafo_arreglo COMA arrValgraf
+        |arrValgraf
+;
+
+
+arrValgraf ::= CADENA_F:a
+            {:
+		variable_g.add(a);
+                String valor_var= a;
+                RESULT =valor_var;
+            :}
+        | aritmetica:val
+            {:           
+                if (val instanceof Double) {
+                    variable_g.add(val);
+                    RESULT =val;
+                } else if (val instanceof String) {
+                    variable_g.add(val);
+                    RESULT =val;
+                } else {
+                    System.out.print("NO FUNCIONO");
+                }
+           :}
+;
+
+
+
+ref_grafoarr::= ABRIRCORCHETES grafo_arreglo:at CERRARCORCHETES 
+{:
+        acumulador.addToOutput("--------------------"); 
+        System.out.println(variable_g);
+        
+ :}
+        | ARROBA PALABRA_I:des
+{:
+        nombre_arList = des.toString();
+        ArrayList<Object> retrievedArrayVar1 = hashMap.getArrayListById(des.toString());
+        System.out.println("-------" + des.toString() +"-------------");
+        RESULT = nombre_arList;
+        //variable_g.clear();
+:}
+;

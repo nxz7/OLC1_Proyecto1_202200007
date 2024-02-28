@@ -76,6 +76,7 @@ public class graficos extends JFrame {
         frame.setLayout(new BorderLayout());
         frame.add(chartPanel, BorderLayout.CENTER);
         frame.pack();
+        frame.setSize(600, 450);
         frame.setVisible(true);
     }
 
