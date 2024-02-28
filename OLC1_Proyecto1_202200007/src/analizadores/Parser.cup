@@ -37,6 +37,9 @@ parser code
     public ArrayList<Object> eje_x = new ArrayList<>();
     public ArrayList<Object> eje_y = new ArrayList<>();
 
+    public ArrayList<Object> eje_xBarras = new ArrayList<>();
+    public ArrayList<Object> eje_yBarras = new ArrayList<>();
+
     public IdArrayListHashMap hashMap = new IdArrayListHashMap();
     public IdArrayListHashMap hashVarianza = new IdArrayListHashMap();
     public IdArrayListHashMap hashgrafico= new IdArrayListHashMap();
@@ -48,6 +51,10 @@ parser code
     public static String titulo_line;
     public static String titulox_line;
     public static String tituloy_line;
+
+    public static String titulo_barras;
+    public static String titulox_barras;
+    public static String tituloy_barras;
 
     //public static String titulog;
     public void syntax_error(Symbol s)
@@ -102,6 +109,8 @@ non terminal datos_pie;
 non terminal instr_pie;
 non terminal datos_line;
 non terminal instr_line;
+non terminal instr_bar; 
+non terminal datos_bar;
 
 //------> PRECEDENCIA
 
@@ -491,8 +500,68 @@ graficos_inst ::= HISTOGRAM ABRIRPARENTESIS instr_grafo EXEC HISTOGRAM FIN PUNTO
         acumulador.addToOutput("-------------> GRAFICA LINEA CREADA");
         eje_x.clear();
         eje_y.clear();
+:} | GRAPHBAR ABRIRPARENTESIS instr_bar EXEC GRAPHBAR FIN PUNTOYCOMA CERRARPARENTESIS FIN PUNTOYCOMA 
+{:
+    System.out.println(titulo_barras);
+    System.out.println(titulox_barras);
+    System.out.println(tituloy_barras);
+    graficos.createBarGraph(titulo_barras, titulox_barras, tituloy_barras, eje_xBarras, eje_yBarras, Color.ORANGE);
+    acumulador.addToOutput("-------------> GRAFICA BARRAS CREADA");
+    eje_xBarras.clear();
+    eje_yBarras.clear();
 :}
 ;
+
+
+instr_bar ::= instr_bar datos_bar
+    | datos_bar
+;
+
+
+datos_bar::= TITULO DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL titulo_str:titulo_g FIN PUNTOYCOMA
+{:
+    titulo_barras = titulo_g.toString();
+    RESULT = titulo_barras ;
+:} |  TITULOX DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL titulo_str:titulo_g FIN PUNTOYCOMA
+{:
+    titulox_barras = titulo_g.toString();
+    RESULT = titulox_barras;
+
+:}
+|  TITULOY DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL titulo_str:titulo_g FIN PUNTOYCOMA
+{:
+    tituloy_barras = titulo_g.toString();
+    RESULT = tituloy_barras;
+
+:}| EJEY DOSPUNTOS DOSPUNTOS DOUBLE IGUAL ref_grafoarr:tr FIN PUNTOYCOMA
+{:
+            if (!nombre_arList.equals("nada")) {
+                ArrayList<Object> array_Bar = hashMap.getArrayListById(nombre_arList.toString());
+                eje_yBarras.addAll(array_Bar);
+                variable_g.clear();
+                nombre_arList = "nada";
+            } else {
+                ArrayList<Object> array_Bar = new ArrayList<>(variable_g);
+                eje_yBarras.addAll(array_Bar);
+                variable_g.clear();
+            }
+:}       
+ | EJEX DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL ref_grafoarr:tr FIN PUNTOYCOMA
+{:
+            if (!nombre_arList.equals("nada")) {
+                ArrayList<Object> array_Bar_str = hashMap.getArrayListById(nombre_arList.toString());
+                eje_xBarras.addAll(array_Bar_str);
+                variable_g.clear();
+                nombre_arList = "nada";
+            } else {
+                ArrayList<Object> array_Bar_str = new ArrayList<>(variable_g);
+                eje_xBarras.addAll(array_Bar_str);
+                variable_g.clear();
+            }
+:}
+        
+;
+
 
 
 

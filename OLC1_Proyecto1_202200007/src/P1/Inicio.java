@@ -19,7 +19,7 @@ public class Inicio {
         inicioM.setVisible(true);
         //funciones.funcion.mostrar("hola");s
         //aaaaaaa
-        analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
+        //analizadores("src/analizadores/", "Lexer.jflex", "Parser.cup");
         
         String entrada = """ 
 PROGRAM
@@ -39,7 +39,9 @@ PROGRAM
                                 console::print = Media(@notas), Mediana(@notas), Moda(@notas), Varianza(@notas), Max(@notas), Min(@notas) end;
                                 console::print = "Hola Mundo", MOD(10, 9), notaAprobar, labelAprobar end;
                          
-                         
+                                var:double:: gb1 <- 61 end;
+                         	var:char[]:: gbt <- "Datos" end;
+                                                 
                                 graphLine(
                                 	!testing de variables en graficas
                                 	titulo::char[] = "titulo lines" end;
@@ -65,7 +67,16 @@ PROGRAM
                                         titulo::char[] = titulo1 end;
                                         EXEC Histogram end;
                                     ) end;
-                                                                          
+                         
+	|                       graphBar(
+                                        !grafica 1
+                                        tituloX::char[] = "TITULOX" end;
+                                        tituloY::char[] = gbt end;
+                                        titulo::char[] = "BARRAz" end;
+                                        ejeX::char[] = ["1 Parcial", "2 parcial", "Final"] end;
+                                        ejeY::double = [gb1, 30, 70] end;
+                                        EXEC graphBar end;
+                                    ) end;                                                                          
                                 	
 
                         	
@@ -83,6 +94,7 @@ PROGRAM
         System.out.print("\"");
         List<Object> lineEjex = List.of("1 parcial", "2 parcial", "final");
         List<Object> lineEjey = List.of(50.0,30.0,70.0);
+        
         //graficos.createLineGraph("grafica de linea", "actividades", "notas", lineEjex, lineEjey, Color.BLUE);
         
         //analizar(entrada);
