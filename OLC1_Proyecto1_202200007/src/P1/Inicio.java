@@ -41,7 +41,15 @@ PROGRAM
                          
                                 var:double:: gb1 <- 61 end;
                          	var:char[]:: gbt <- "Datos" end;
-                                                 
+	|                       graphBar(
+                                                                                         !grafica 1
+                                        tituloX::char[] = "UNOOO" end;
+                                        tituloY::char[] = gbt end;
+                                        titulo::char[] = "BARRAz" end;
+                                        ejeX::char[] = ["1 Parcial", "2 parcial", "Final"] end;
+                                        ejeY::double = [50, 70, 90] end;
+                                        EXEC graphBar end;
+                                                                                     ) end;                                                  
                                 graphLine(
                                 	!testing de variables en graficas
                                 	titulo::char[] = "titulo lines" end;

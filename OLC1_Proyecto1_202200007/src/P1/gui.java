@@ -445,6 +445,7 @@ public class gui extends javax.swing.JFrame {
         consola.setText(accumulatedText);
         System.out.println("texto");
         System.out.println(accumulatedText);
+        //consola.append("---------------> COMPILACION FINALIZADA!!!!!!!!");
         
     }//GEN-LAST:event_jButton2ActionPerformed
 ///////////////////////////// abrirb arhivo - funcion //////////////

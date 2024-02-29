@@ -1423,11 +1423,13 @@ class CUP$Parser$actions {
 		Object tr = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
             if (!nombre_arList.equals("nada")) {
+                eje_yBarras.clear();
                 ArrayList<Object> array_Bar = hashMap.getArrayListById(nombre_arList.toString());
                 eje_yBarras.addAll(array_Bar);
                 variable_g.clear();
                 nombre_arList = "nada";
             } else {
+                eje_yBarras.clear();
                 ArrayList<Object> array_Bar = new ArrayList<>(variable_g);
                 eje_yBarras.addAll(array_Bar);
                 variable_g.clear();
@@ -1446,11 +1448,13 @@ class CUP$Parser$actions {
 		Object tr = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
             if (!nombre_arList.equals("nada")) {
+                eje_xBarras.clear();
                 ArrayList<Object> array_Bar_str = hashMap.getArrayListById(nombre_arList.toString());
                 eje_xBarras.addAll(array_Bar_str);
                 variable_g.clear();
                 nombre_arList = "nada";
             } else {
+                eje_xBarras.clear();
                 ArrayList<Object> array_Bar_str = new ArrayList<>(variable_g);
                 eje_xBarras.addAll(array_Bar_str);
                 variable_g.clear();
@@ -1534,11 +1538,13 @@ class CUP$Parser$actions {
 		Object tr = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
             if (!nombre_arList.equals("nada")) {
+                eje_y.clear();
                 ArrayList<Object> array_line = hashMap.getArrayListById(nombre_arList.toString());
                 eje_y.addAll(array_line);
                 variable_g.clear();
                 nombre_arList = "nada";
             } else {
+                eje_y.clear();
                 ArrayList<Object> array_line = new ArrayList<>(variable_g);
                 eje_y.addAll(array_line);
                 variable_g.clear();
@@ -1557,11 +1563,13 @@ class CUP$Parser$actions {
 		Object tr = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
             if (!nombre_arList.equals("nada")) {
+                eje_x.clear();
                 ArrayList<Object> array_line_str = hashMap.getArrayListById(nombre_arList.toString());
                 eje_x.addAll(array_line_str);
                 variable_g.clear();
                 nombre_arList = "nada";
             } else {
+                eje_x.clear();
                 ArrayList<Object> array_line_str = new ArrayList<>(variable_g);
                 eje_x.addAll(array_line_str);
                 variable_g.clear();
@@ -1614,11 +1622,13 @@ class CUP$Parser$actions {
 		Object tr = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
             if (!nombre_arList.equals("nada")) {
+                valoresPie.clear();
                 ArrayList<Object> array_Pie = hashMap.getArrayListById(nombre_arList.toString());
                 valoresPie.addAll(array_Pie);
                 variable_g.clear();
                 nombre_arList = "nada";
             } else {
+                valoresPie.clear();
                 ArrayList<Object> array_Pie = new ArrayList<>(variable_g);
                 valoresPie.addAll(array_Pie);
                 variable_g.clear();
@@ -1637,11 +1647,13 @@ class CUP$Parser$actions {
 		Object tr = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
             if (!nombre_arList.equals("nada")) {
+                labelPie.clear();
                 ArrayList<Object> array_Pie_str = hashMap.getArrayListById(nombre_arList.toString());
                 labelPie.addAll(array_Pie_str);
                 variable_g.clear();
                 nombre_arList = "nada";
             } else {
+                labelPie.clear();
                 ArrayList<Object> array_Pie_str = new ArrayList<>(variable_g);
                 labelPie.addAll(array_Pie_str);
                 variable_g.clear();
@@ -1696,11 +1708,13 @@ class CUP$Parser$actions {
 		Object tr = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-2)).value;
 		
             if (!nombre_arList.equals("nada")) {
+                arrayGraf.clear();
                 ArrayList<Object> arrayGrafico = hashMap.getArrayListById(nombre_arList.toString());
                 arrayGraf.addAll(arrayGrafico);
                 variable_g.clear();
                 nombre_arList = "nada";
             } else {
+                arrayGraf.clear();
                 ArrayList<Object> arrayGrafico = new ArrayList<>(variable_g);
                 arrayGraf.addAll(arrayGrafico);
                 variable_g.clear();
