@@ -20,23 +20,23 @@ public class IdArrayListHashMap {
         idArrayListMap = new HashMap<>();
     }
 
-    // Getter for idArrayListMap
+    // Getter  idArrayListMap
     public HashMap<String, ArrayList<Object>> getIdArrayListMap() {
         return idArrayListMap;
     }
 
-    // Setter for idArrayListMap
+    // Setter idArrayListMap
     public void setIdArrayListMap(HashMap<String, ArrayList<Object>> idArrayListMap) {
         this.idArrayListMap = idArrayListMap;
     }
 
-    // Getter for ArrayList corresponding to a specific ID
+    // Getter ID
     public ArrayList<Object> getArrayListById(String id) {
          //System.out.println("buscando el array en el hashmap");
         return idArrayListMap.get(id);
     }
 
-    // Setter for ArrayList corresponding to a specific ID
+    // Setter  ID
     public void setArrayListById(String id, ArrayList<Object> arrayList) {
         idArrayListMap.put(id, arrayList);
         //System.out.println("agregada");
@@ -134,7 +134,7 @@ public class IdArrayListHashMap {
     }
 
     /**
-     * Calculate the variance of the elements in the given ArrayList.
+     * ArrayList.
      * @param arrayList The ArrayList containing elements to calculate variance.
      * @return The variance of the elements in the ArrayList.
      */

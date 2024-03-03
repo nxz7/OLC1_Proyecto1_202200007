@@ -63,7 +63,6 @@ public class gui extends javax.swing.JFrame {
         Archivo = new javax.swing.JMenu();
         Archivo_abrir = new javax.swing.JMenuItem();
         Archivo_nuevo = new javax.swing.JMenuItem();
-        Archivo_guardar = new javax.swing.JMenuItem();
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 51));
@@ -216,9 +215,6 @@ public class gui extends javax.swing.JFrame {
         });
         Archivo.add(Archivo_nuevo);
 
-        Archivo_guardar.setText("Guardar Archivo");
-        Archivo.add(Archivo_guardar);
-
         jMenuBar1.add(Archivo);
 
         setJMenuBar(jMenuBar1);
@@ -328,7 +324,7 @@ public class gui extends javax.swing.JFrame {
                    .append("th, td { text-align: left; padding: 8px; }")
                    .append("th { background-color: #f2f2f2; }")
                    .append("</style></head><body>")
-                   .append("<table><tr><th>Count of Items</th><th>ID</th><th>Tipo</th>")
+                   .append("<table><tr><th>#</th><th>ID</th><th>Tipo</th>")
                    .append("<th>Valor Act</th><th>Fila</th><th>Columna</th></tr>");
 
          int rowCount = 1;
@@ -509,7 +505,6 @@ public class gui extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Archivo;
     private javax.swing.JMenuItem Archivo_abrir;
-    private javax.swing.JMenuItem Archivo_guardar;
     private javax.swing.JMenuItem Archivo_nuevo;
     private javax.swing.JTextArea consola;
     private javax.swing.JTabbedPane entrada;

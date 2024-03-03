@@ -12,8 +12,7 @@ import java.util.ArrayList;
 
 public class valor_variable {
     public String id;                                   
-    public String tipo;                                 
-    //public String clase;                                 
+    public String tipo;                                                                
     public String valoract;                       
     public ArrayList<Object> valorArreglo;              
     public int fila;                                    // -> implementar despues
@@ -24,7 +23,6 @@ public class valor_variable {
         
         this.id = id;
         this.tipo = tipo;
-        //this.clase =clase;
         this.valoract = valoract;
         this.valorArreglo = valorArreglo;
         this.fila = fila;

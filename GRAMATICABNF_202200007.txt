@@ -1,0 +1,141 @@
+TERMINALES={
+IGUAL, PUNTOYCOMA, DOSPUNTOS, COMA, FIN, CONSOLE, CADENA_F, NUMERO, PRINT, VAR, DOUBLE, GUION, PROGRAMPAL, ABRIRCORCHETES, CERRARCORCHETES, CADENACHAR, 
+ARREGLO, ARROBA, ABRIRPARENTESIS, CERRARPARENTESIS, SUMA, RESTA, MULTIPLICACION, DIVISION, MODULO, MEDIA, MEDIANA, MODA, VARIANZA, MAX, MIN, COLUMN, EXEC, VALUES, TITULO, LABEL,
+GRAPHBAR, GRAPHPIE, GRAPHLINE, HISTOGRAM, EJEX, EJEY, TITULOX, TITULOY, PALABRA_I,GUIONREV,OPENCOM,CLOSECOM
+}
+
+
+
+NO TERMINALES={
+ <inicio>, <lista_instr>, <instruccion>, <impresion>, <lista_expresion>, <expresion>, <aritmetica>,<variables>, <tipo>, <lista_arreglo>, 
+<arrVal>, <ref_arreglo>, <estadistica_arreglo>, <graficos_inst>, <datos_histograma>, <titulo_str>, <instr_grafo>, <grafo_arreglo>,
+<arrValgraf>, <ref_grafoarr>, <datos_pie>,<instr_pie>, <datos_line>, <instr_line>,<instr_bar>, <datos_bar>
+}
+
+
+Producciones:
+
+<inicio> ::= PROGRAMPAL <lista_instr> FIN PROGRAMPAL
+
+
+<lista_instr> ::= <lista_instr> <instruccion>
+    | <instruccion>
+
+<instruccion> ::= <impresion>
+    | <variables>
+    | <graficos_inst>
+    | error PUNTOYCOMA
+    | error FIN PUNTOYCOMA
+    | epsilon
+
+<impresion> ::= CONSOLE DOSPUNTOS DOSPUNTOS PRINT IGUAL <lista_expresion> FIN PUNTOYCOMA   
+   |CONSOLE DOSPUNTOS DOSPUNTOS COLUMN IGUAL expresion GUIONREV <ref_arreglo> FIN PUNTOYCOMA 
+
+
+<lista_expresion> ::= <lista_expresion> COMA <expresion>
+	| <expresion>
+
+
+<expresion> ::= CADENA_F
+        | <aritmetica>
+
+
+<aritmetica> ::= NUMERO    
+        | PALABRA_I
+        |  SUMA ABRIRPARENTESIS <aritmetica> COMA <aritmetica> CERRARPARENTESIS  
+        |  RESTA ABRIRPARENTESIS <aritmetica> COMA <aritmetica> CERRARPARENTESIS   
+        |  MULTIPLICACION ABRIRPARENTESIS <aritmetica> COMA <aritmetica> CERRARPARENTESIS   
+        |  DIVISION ABRIRPARENTESIS <aritmetica> COMA <aritmetica> CERRARPARENTESIS    
+        |  MODULO ABRIRPARENTESIS <aritmetica> COMA <aritmetica> CERRARPARENTESIS   
+        | MEDIA ABRIRPARENTESIS <estadistica_arreglo> CERRARPARENTESIS  
+        |  MEDIANA ABRIRPARENTESIS <estadistica_arreglo> CERRARPARENTESIS   
+        | MODA ABRIRPARENTESIS <estadistica_arreglo> CERRARPARENTESIS  
+        |  VARIANZA ABRIRPARENTESIS <estadistica_arreglo> CERRARPARENTESIS   
+        |  MAX ABRIRPARENTESIS <estadistica_arreglo> CERRARPARENTESIS   
+        |  MIN ABRIRPARENTESIS <estadistica_arreglo> CERRARPARENTESIS   
+
+
+<variables> ::= VAR DOSPUNTOS tipo DOSPUNTOS DOSPUNTOS PALABRA_I GUION <expresion> FIN PUNTOYCOMA
+	| ARREGLO DOSPUNTOS tipo DOSPUNTOS DOSPUNTOS ARROBA PALABRA_I GUION ABRIRCORCHETES <lista_arreglo> CERRARCORCHETES FIN PUNTOYCOMA
+
+
+<tipo> ::= DOUBLE
+	| CADENACHAR ABRIRCORCHETES CERRARCORCHETES
+
+
+<lista_arreglo> ::= <lista_arreglo> COMA <arrVal>
+	|<arrVal>
+
+
+<arrVal> ::= CADENA_F
+	| <aritmetica>
+
+
+<ref_arreglo> ::= ABRIRCORCHETES <lista_arreglo> CERRARCORCHETES 
+	| ARROBA PALABRA_I
+
+
+<estadistica_arreglo>::= ABRIRCORCHETES <lista_arreglo> CERRARCORCHETES 
+	| ARROBA PALABRA_I
+
+
+<graficos_inst> ::= HISTOGRAM ABRIRPARENTESIS <instr_grafo> EXEC HISTOGRAM FIN PUNTOYCOMA CERRARPARENTESIS FIN PUNTOYCOMA
+	| GRAPHPIE ABRIRPARENTESIS <instr_pie> EXEC GRAPHPIE FIN PUNTOYCOMA CERRARPARENTESIS FIN PUNTOYCOMA 
+	| GRAPHLINE ABRIRPARENTESIS <instr_line> EXEC GRAPHLINE FIN PUNTOYCOMA CERRARPARENTESIS FIN PUNTOYCOMA 
+	| GRAPHBAR ABRIRPARENTESIS <instr_bar> EXEC GRAPHBAR FIN PUNTOYCOMA CERRARPARENTESIS FIN PUNTOYCOMA 
+
+
+<instr_bar> ::= <instr_bar> <datos_bar>
+    	| <datos_bar>
+
+
+<datos_bar> ::= TITULO DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <titulo_str> FIN PUNTOYCOMA
+	|  TITULOX DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <titulo_str> FIN PUNTOYCOMA
+	| TITULOY DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <titulo_str> FIN PUNTOYCOMA
+	| EJEY DOSPUNTOS DOSPUNTOS DOUBLE IGUAL <ref_grafoarr> FIN PUNTOYCOMA
+	| EJEX DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <ref_grafoarr> FIN PUNTOYCOMA       
+
+
+<instr_line> ::= <instr_line> <datos_line>
+    | <datos_line>
+
+
+<datos_line> ::= TITULO DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <titulo_str> FIN PUNTOYCOMA
+	|  TITULOX DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <titulo_str>  FIN PUNTOYCOMA
+	|  TITULOY DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <titulo_str> FIN PUNTOYCOMA
+	| EJEY DOSPUNTOS DOSPUNTOS DOUBLE IGUAL <ref_grafoarr> FIN PUNTOYCOMA   
+	| EJEX DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <ref_grafoarr> FIN PUNTOYCOMA
+            
+
+<instr_pie> ::= <instr_pie> <datos_pie>
+    	| <datos_pie>
+
+
+<datos_pie> ::= TITULO DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <titulo_str> FIN PUNTOYCOMA
+     	| VALUES DOSPUNTOS DOSPUNTOS DOUBLE IGUAL <ref_grafoarr> FIN PUNTOYCOMA
+      	| LABEL DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <ref_grafoarr> FIN PUNTOYCOMA
+
+
+<instr_grafo> ::= <instr_grafo> <datos_histograma>
+   	 | <datos_histograma>
+
+
+<datos_histograma> ::= TITULO DOSPUNTOS DOSPUNTOS CADENACHAR ABRIRCORCHETES CERRARCORCHETES IGUAL <titulo_str> FIN PUNTOYCOMA
+        | VALUES DOSPUNTOS DOSPUNTOS DOUBLE IGUAL <ref_grafoarr> FIN PUNTOYCOMA
+
+      
+<titulo_str> ::= CADENA_F
+        | PALABRA_I
+
+
+<grafo_arreglo>::= <grafo_arreglo> COMA <arrValgraf>
+        |<arrValgraf>
+
+
+<arrValgraf>::= CADENA_F
+        | <aritmetica>
+
+
+<ref_grafoarr> ::= ABRIRCORCHETES <grafo_arreglo> CERRARCORCHETES 
+        | ARROBA PALABRA_I
+

@@ -36,20 +36,12 @@ PROGRAM
                                 console::column = titulo1 -> @labels end;
                                 	
                                 console::print = "Media", "Mediana", "Moda", "Varianza", "Max", "Min" end;
-                                console::print = Media(@notas), Mediana(@notas), Moda(@notas), Varianza(@notas), Max(@notas), Min(@notas) end;
+                                console::print = Media(@notas), Mediana([8,10,11,9,5]), Moda(@notas), Varianza(@notas), Max(@notas), Min(@notas) end;
                                 console::print = "Hola Mundo", MOD(10, 9), notaAprobar, labelAprobar end;
                          
                                 var:double:: gb1 <- 61 end;
                          	var:char[]:: gbt <- "Datos" end;
-	|                       graphBar(
-                                                                                         !grafica 1
-                                        tituloX::char[] = "UNOOO" end;
-                                        tituloY::char[] = gbt end;
-                                        titulo::char[] = "BARRAz" end;
-                                        ejeX::char[] = ["1 Parcial", "2 parcial", "Final"] end;
-                                        ejeY::double = [50, 70, 90] end;
-                                        EXEC graphBar end;
-                                                                                     ) end;                                                  
+                                            
                                 graphLine(
                                 	!testing de variables en graficas
                                 	titulo::char[] = "titulo lines" end;
@@ -71,12 +63,12 @@ PROGRAM
                                 	) end;
                          
                                 Histogram(
-                                        values::double = [2,2,2,5,5,7,8] end;
+                                        values::double = [2,2,2,SUM(4,1),5,7,8,MUL(4,SUM(1,1))] end;
                                         titulo::char[] = titulo1 end;
                                         EXEC Histogram end;
                                     ) end;
                          
-	|                       graphBar(
+	|/                       graphBar(
                                         !grafica 1
                                         tituloX::char[] = "TITULOX" end;
                                         tituloY::char[] = gbt end;
@@ -100,37 +92,12 @@ PROGRAM
         
         System.out.println("-------------------------------------------------------------------------------");
         System.out.print("\"");
-        List<Object> lineEjex = List.of("1 parcial", "2 parcial", "final");
-        List<Object> lineEjey = List.of(50.0,30.0,70.0);
-        
-        //graficos.createLineGraph("grafica de linea", "actividades", "notas", lineEjex, lineEjey, Color.BLUE);
         
         //analizar(entrada);
         //TokenList.printTokenList();
        //TokenList.genHTMLTokenList();
        //ErroresList.genHTMLErrorList();
        
-        //graficos graphGenerator = new graficos("Graphs");
-
-        //barra
-        /*
-        List<Object> barEjex = List.of("1 parcial", "2 parcial", "final");
-        List<Object> barEjey = List.of(50.0, 30.0, 70.0);
-        graficos.createBarGraph("ESTUDIANTES", "ACTIVIDADES", "NOTA", barEjex, barEjey, Color.BLUE);
-
-        // Pie 
-        List<Object> pieLabels = List.of("UNO", "DOS", "TRES");
-        List<Object> pieValues = List.of(50.0, 30.0, 20.0);
-        graficos.createPieGraph("Pie Chart Example", pieLabels, pieValues, Color.GRAY);
-
-        // Line graph
-        List<Object> lineEjex = List.of("1 parcial", "2 parcial", "final");
-        List<Object> lineEjey = List.of(50.0,30.0,70.0);
-        graficos.createLineGraph("grafica de linea", "actividades", "notas", lineEjex, lineEjey, Color.BLUE);
-
-        // Histogram
-        List<Object> histogramValores = List.of(2.0,2.0,2.0,7.0,8.0,5.0,5.0);
-        graficos.createHistogram("Histogram Example", histogramValores, Color.RED);*/
        
     }
     
